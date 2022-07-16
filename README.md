@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-Tugas Akhir D3 Teknik Informatika Politeknik Negeri Semarang
-Oleh :
-Mukhammad Badrut Tamam (3.34.19.3.18)
+Tugas Akhir D3 Teknik Informatika Politeknik Negeri Semarang <br>
+Oleh : <br>
+Mukhammad Badrut Tamam (3.34.19.3.18) <br>
 Alvan Amalana (3.34.19.3.04)
