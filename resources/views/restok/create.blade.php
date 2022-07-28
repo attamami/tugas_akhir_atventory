@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <br>
-                alamat
+                
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Nama Barang</strong>
