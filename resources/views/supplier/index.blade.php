@@ -18,7 +18,7 @@
 <section class="section">
       <div class="row form-group justify-content-center">
         <div class="col-lg-12">
-        <div class="scrolling-wrapper">
+        <!-- <div class="scrolling-wrapper"> -->
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Data Supplier</h5>
@@ -63,7 +63,7 @@
           </div>
 
         </div>
-        </div>
+        <!-- </div> -->
       </div>
     </section>
 

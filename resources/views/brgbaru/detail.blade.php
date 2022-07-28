@@ -37,7 +37,7 @@
                     <td>{{ $brgbaru->nama_supplier}}</td>
                 </tr>
                 <tr>
-                    <td width="150px">No. Telepon</td>
+                    <td width="150px">No. Telepon</td> 
                     <td width="90px">:</td>
                     <td>{{ $brgbaru->telp }}</td>
                 </tr>

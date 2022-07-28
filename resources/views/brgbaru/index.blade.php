@@ -18,7 +18,7 @@
 <section class="section">
       <div class="row">
         <div class="col-lg-12">
-        <div class="scrolling-wrapper">
+        <!-- <div class="scrolling-wrapper"> -->
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Pembelian & Barang Masuk</h5>
@@ -81,7 +81,7 @@
           </div>
 
         </div>
-      </div>
+      <!-- </div> -->
       </div>
     </section>
 </main>
