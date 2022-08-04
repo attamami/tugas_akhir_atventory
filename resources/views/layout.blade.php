@@ -13,8 +13,8 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <!-- Favicons -->
-  <link href="{{asset('assets/img/Logo-TAAT.jpg')}}" rel="icon">
-  <link href="{{asset('assets/img/Logo-TAAT.jpg')}}" rel="apple-touch-icon">
+  <link href="{{asset('assets/img/logoatventory.png')}}" rel="icon">
+  <link href="{{asset('assets/img/logoatventory.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -46,7 +46,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="/" class="logo d-flex align-items-center">
-        <img src="assets/img/Logo-TAAT.jpg" alt="">
+        <img src="{{asset('assets/img/logoatventory.png')}}" rel="icon">
         <span class="d-none d-lg-block">ATventory</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -55,18 +55,12 @@
     
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <!-- End Notification Nav -->
-
-        <!-- End Messages Nav -->
-
-        
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/user.png" alt="Profile" class="rounded-circle">
+            <img src="{{asset('assets/img/user.png')}}" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">Admin Sumber Rezeki</span>
-          </a><!-- End Profile Iamge Icon -->
+          </a><!-- End Profile Image Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
@@ -102,7 +96,7 @@
 
   </header>
   <!-- End Header -->
-
+  
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
 
@@ -116,22 +110,12 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#kontrol-nav" data-bs-toggle="collapse" href="">
-          <i class="ri-stack-line"></i><span>Barang</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" href="{{ route('barang.index') }}">
+        <!-- <a class="nav-link collapsed" data-bs-target="#kontrol-nav" data-bs-toggle="collapse" href="{{ route('barang.index') }}"> -->
+          <i class="ri-stack-line"></i><span>Data Barang</span>
+          <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
-        <ul id="kontrol-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route('barang.index') }}">
-              <i class="bi bi-circle"></i><span>Data Barang</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ route('stok.index') }}">
-              <i class="bi bi-circle"></i><span>Stok</span>
-            </a>
-          </li>
-        </ul>
+        
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
@@ -154,7 +138,7 @@
       </li><!-- End Pembelian Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="{{ route('penjualan.index') }}">
           <i class="ri-money-dollar-circle-line"></i>
           <span>Penjualan & Barang Keluar</span>
         </a>
@@ -166,12 +150,12 @@
         </a>
         <ul id="piutang-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="tables-general.html">
+            <a href="{{ route('hutang.index') }}">
               <i class="bi bi-circle"></i><span>Hutang Dagang</span>
             </a>
           </li>
           <li>
-            <a href="tables-data.html">
+            <a href="{{ route('piutang.index') }}">
               <i class="bi bi-circle"></i><span>Piutang Dagang</span>
             </a>
           </li>
@@ -205,10 +189,21 @@
       <li class="nav-heading">Sistem</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="ri-file-list-3-line"></i>
-          <span>Laporan</span>
+        <a class="nav-link collapsed" data-bs-target="#laporan-nav" data-bs-toggle="collapse" href="#">
+          <i class="ri-file-list-3-line"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="laporan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ route('laporan_penjualan.index') }}">
+              <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="bi bi-circle"></i><span>Laporan Pembelian</span>
+            </a>
+          </li>
+        </ul>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
@@ -225,7 +220,7 @@
   </aside><!-- End Sidebar-->
 
   @yield('content')
-<br><br><br>
+
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">

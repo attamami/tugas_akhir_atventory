@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-    use HasFactory;
-    // protected $primaryKey = "id";
+    public function hutang(){
+        return $this->belongsTo(Hutang::class,'foreign_key', 'id_hutang');
+    }
 }

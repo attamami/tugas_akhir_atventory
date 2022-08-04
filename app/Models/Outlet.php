@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Outlet extends Model
 {
-    use HasFactory;
+    public function piutang(){
+        return $this->belongsTo(Piutang::class,'foreign_key', 'id_piutang');
+    }
 }

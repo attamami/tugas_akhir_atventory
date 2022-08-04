@@ -1,16 +1,16 @@
 @extends('layout')
-@section('title','Data Pembelian & Barang Masuk - ATventory')
+@section('title','Data Penjualan & Barang Keluar - ATventory')
 
 @section('content')
     
 <main id="main" class="main">
 
 <div class="pagetitle">
-  <h1>Data Pembelian & Barang Masuk</h1>
+  <h1>Data Penjualan & Barang Keluar</h1>
   <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">Pembelian & Barang Masuk</li>    
-        <li class="breadcrumb-item active">Re-Stok</li>
+        <li class="breadcrumb-item active">Penjualan & Barang Keluar</li>    
+        <!-- <li class="breadcrumb-item active">Re-Stok</li> -->
       </ol>
   </nav>
 </div><!-- End Page Title -->
@@ -21,47 +21,47 @@
         <!-- <div class="scrolling-wrapper"> -->
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Pembelian & Barang Masuk</h5>
+              <h5 class="card-title">Penjualan & Barang Keluar</h5>
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                     <p>{{ $message }}</p>
                     </div>
                 @endif
-              <a href="{{ route('restok.create') }}" class="btn btn-primary">Tambah Data</a>
+              <a href="{{ route('penjualan.create') }}" class="btn btn-primary">Tambah Data</a>
               <!-- Table with stripped rows -->
               <table class="table datatable" id="table_anc" style="overflow-x: auto;">
                 <thead>
                   <tr>
-                    <th scope="col">ID Pembelian</th>
-                    <th scope="col">ID Supplier</th>
+                    <th scope="col">ID Penjualan</th>
+                    <th scope="col">ID Outlet</th>
                     <th scope="col">ID Barang</th>
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Jenis Barang</th>
-                    <th scope="col">Harga Beli</th>
+                    <th scope="col">Harga Jual</th>
                     <th scope="col">Satuan</th>
                     <th scope="col">Jumlah</th>
                     <th scope="col">Total Harga</th>
-                    <th scope="col">Tanggal Beli</th>
+                    <th scope="col">Tanggal Jual</th>
                     <th></th>
                   </tr>
                 </thead>
-                @foreach ($restok as $data)
+                @foreach ($penjualan as $data)
                   <tr>
                     
-                    <td>{{ $data->id_restok }}</td>
-                    <td>{{ $data->id_supplier }}</td>
+                    <td>{{ $data->id_penjualan }}</td>
+                    <td>{{ $data->id_outlet }}</td>
                     <td>{{ $data->id_barang }}</td>
                     <td>{{ $data->barang->nama_barang }}</td>
                     <td>{{ $data->barang->jenis_barang }}</td>
-                    <td>Rp {{ number_format($data->barang->harga_beli) }}</td>
+                    <td>Rp {{ number_format($data->barang->harga_jual) }}</td>
                     <td>{{ $data->barang->satuan }}</td>
                     <td>{{ $data->jumlah }}</td>
                     <td>Rp {{ number_format($data->totalhrg) }}</td>
-                    <td>{{ $data->tgl_beli }}</td>
+                    <td>{{ $data->tgl_jual }}</td>
                     <!-- <td>
-                    <a href="{{ route('restok.show',$data->id) }}" class="btn btn-info ri-eye-line"></a>
-                    <a href="{{ route('restok.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>
-                      <form action="{{ route('restok.destroy',$data->id) }}" method="POST" class="d-inline">
+                    <a href="{{ route('penjualan.show',$data->id) }}" class="btn btn-info ri-eye-line"></a>
+                    <a href="{{ route('penjualan.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>
+                      <form action="{{ route('penjualan.destroy',$data->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger ri-delete-bin-5-line" onclick="return confirm('Yakin hapus data?')" ></button>
@@ -70,7 +70,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $restok->links() !!}
+              {!! $penjualan->links() !!}
               <!-- End Table with stripped rows -->
 
             </div>

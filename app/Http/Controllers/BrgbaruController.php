@@ -8,7 +8,8 @@ use App\Models\Satuan;
 use App\Models\Jenisbarang;
 use App\Models\Supplier;
 use App\Models\Barang;
-use App\Models\Stok;
+use Illuminate\Support\Facades\DB;
+
 
 class BrgbaruController extends Controller
 {
@@ -29,28 +30,16 @@ class BrgbaruController extends Controller
     {
         $request->validate([
             'id_beli' => 'required',
-            'nama_supplier' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
+            'id_supplier' => 'required',
             'id_barang' => 'required',
-            'nama_barang' => 'required',
-            'jenis_barang' => 'required',
-            'harga' => 'required',
-            'satuan' => 'required',
             'jumlah' => 'required',
             'totalhrg' => 'required',
             'tgl_beli' => 'required',
         ]);
         $brgbaru = new Brgbaru();
         $brgbaru->id_beli = $request->id_beli;
-        $brgbaru->nama_supplier = $request->nama_supplier;
-        $brgbaru->telp = $request->telp;
-        $brgbaru->alamat = $request->alamat;
+        $brgbaru->id_supplier = $request->id_supplier;
         $brgbaru->id_barang = $request->id_barang;
-        $brgbaru->nama_barang = $request->nama_barang;
-        $brgbaru->jenis_barang = $request->jenis_barang;
-        $brgbaru->harga = $request->harga;
-        $brgbaru->satuan = $request->satuan;
         $brgbaru->jumlah = $request->jumlah;
         $brgbaru->totalhrg = $request->totalhrg;
         $brgbaru->tgl_beli = $request->tgl_beli;
@@ -60,63 +49,50 @@ class BrgbaruController extends Controller
         $barang->id_barang = $request->id_barang;
         $barang->nama_barang = $request->nama_barang;
         $barang->jenis_barang = $request->jenis_barang;
-        $barang->harga = $request->harga;
+        $barang->harga_beli = $request->harga_beli;
+        $barang->harga_jual = $request->harga_jual;
         $barang->satuan = $request->satuan;
+        $barang->stok = $request->jumlah;
         $barang->save();
-
-        $stok = new Stok();
-        $stok->id_barang = $request->id_barang;
-        $stok->nama_barang = $request->nama_barang;
-        $stok->satuan = $request->satuan;
-        $stok->stok = $request->jumlah;
-        $stok->save();
 
         return redirect()->route('brgbaru.index')->with('success','Data Pembelian Telah Berhasil Ditambahkan.');
     }
 
-    public function show(Brgbaru $brgbaru)
-    {
-        return view('brgbaru.detail',compact('brgbaru'));
-    }
+    // public function show(Brgbaru $brgbaru)
+    // {
+    //     return view('brgbaru.detail',compact('brgbaru'));
+    // }
 
     public function edit(Brgbaru $brgbaru)
     {
         $satuans = Satuan::get();
         $suppliers = Supplier::get();
+        $barangs = Barang::get();
         $jenisbarang = Jenisbarang::get();
-        return view('brgbaru.edit',compact('brgbaru','satuans','suppliers','jenisbarang'));
+        return view('brgbaru.edit',compact('brgbaru','suppliers','barangs','satuans','jenisbarang'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'id_beli' => 'required',
-            'nama_supplier' => 'required',
-            'telp' => 'required',
-            'alamat' => 'required',
+            'id_supplier' => 'required',
             'id_barang' => 'required',
-            'nama_barang' => 'required',
-            'jenis_barang' => 'required',
-            'harga' => 'required',
-            'satuan' => 'required',
             'jumlah' => 'required',
             'totalhrg' => 'required',
             'tgl_beli' => 'required',
         ]);
         $brgbaru = Brgbaru::find($id);
         $brgbaru->id_beli = $request->id_beli;
-        $brgbaru->nama_supplier = $request->nama_supplier;
-        $brgbaru->telp = $request->telp;
-        $brgbaru->alamat = $request->alamat;
+        $brgbaru->id_supplier = $request->id_supplier;
         $brgbaru->id_barang = $request->id_barang;
-        $brgbaru->nama_barang = $request->nama_barang;
-        $brgbaru->jenis_barang = $request->jenis_barang;
-        $brgbaru->harga = $request->harga;
-        $brgbaru->satuan = $request->satuan;
         $brgbaru->jumlah = $request->jumlah;
         $brgbaru->totalhrg = $request->totalhrg;
         $brgbaru->tgl_beli = $request->tgl_beli;
         $brgbaru->save();
+        $barang = Barang::find($id);
+        $barang->stok = $request->jumlah;
+        $barang->save();
         return redirect()->route('brgbaru.index')->with('success','Data Pembelian Telah Berhasil Diubah');
     }
 

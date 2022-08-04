@@ -42,14 +42,24 @@
                     <td>{{ $barang->jenis_barang }}</td>
                 </tr>
                 <tr>
-                    <td width="100px">Harga</td>
+                    <td width="100px">Harga Beli</td>
                     <td width="30px">:</td>
-                    <td>Rp. {{ number_format($barang->harga) }}</td>
+                    <td>Rp. {{ number_format($barang->harga_beli) }}</td>
+                </tr>
+                <tr>
+                    <td width="100px">Harga Jual</td>
+                    <td width="30px">:</td>
+                    <td>Rp. {{ number_format($barang->harga_jual) }}</td>
                 </tr>
                 <tr>
                     <td width="100px">Satuan</td>
                     <td width="30px">:</td>
                     <td>{{ $barang->satuan }}</td>
+                </tr>
+                <tr>
+                    <td width="100px">Stok</td>
+                    <td width="30px">:</td>
+                    <td>Rp. {{ number_format($barang->stok) }}</td>
                 </tr>
               </table>
               <!-- End Table with stripped rows -->

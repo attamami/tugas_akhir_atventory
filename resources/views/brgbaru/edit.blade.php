@@ -41,23 +41,23 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label>Nama Supplier</label>
-                                <input name="nama_supplier" class="form-control" value="{{ $brgbaru->nama_supplier }}" readonly>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label>No. Telepon</label>
-                                <input name="telp" class="form-control" value="{{ $brgbaru->telp }}" readonly>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label>Alamat</label>
-                                <input name="alamat" class="form-control" value="{{ $brgbaru->alamat }}" readonly>
+                                <label>ID Supplier</label>
+                                {{-- <input name="id_supplier" class="form-control" value="{{ $brgbaru->id_supplier }}"> --}}
+                                <select class="form-control" name="id_supplier" id="id_supplier">
+                                    <option selected disabled>Pilih ID Supplier ...</option>
+                                    @foreach($suppliers as $supplier)
+                                        <option data-row="{{$supplier}}" @if (isset($brgbaru)) @if ($brgbaru->id_supplier == $supplier['id_supplier']) selected @endif @endif>{{$supplier['id_supplier']}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="text-danger">
+                                    @error('jenis_barang')
+                                        {{ $message }}
+                                    @enderror
                             </div>
                             <br>
                             <div class="form-group">
                                 <label>ID Barang</label>
-                                <input name="id_barang" class="form-control" value="{{ $brgbaru->id_barang }}">
+                                <input name="id_barang" class="form-control" value="{{ $brgbaru->id_barang }}" readonly>
                                 <div class="text-danger">
                                     @error('id_barang')
                                         {{ $message }}
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Nama Barang</label>
                                 <input name="nama_barang" class="form-control" value="{{ $brgbaru->nama_barang }}">
                                 <div class="text-danger">
@@ -116,7 +116,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <br>
+                            <br> -->
                             <div class="form-group">
                                 <label>Jumlah</label>
                                 <input name="jumlah" class="form-control" value="{{ $brgbaru->jumlah}}">
@@ -149,7 +149,7 @@
                             <br>
                             <div class="">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button> 
-                                <a class="btn btn-primary" href="{{ route('barang.index') }}"> Kembali</a>
+                                <a class="btn btn-primary" href="{{ route('brgbaru.index') }}"> Kembali</a>
                             </div>
                         </div>
                     </div>

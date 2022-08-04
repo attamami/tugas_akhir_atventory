@@ -40,17 +40,18 @@
                         @enderror
                     </div>
                 </div>
+                <br>
                 <div class="form-group">
-                    <label><strong></strong></label>
-                    {{-- <input name="nama_supplier" class="form-control" value="{{ $brgbaru->nama_supplier }}"> --}}
-                    <select class="form-control" name="nama_supplier" id="nama_supplier">
-                        <option selected disabled>Pilih Nama Supplier ...</option>
+                    <label><strong>ID Supplier</strong></label>
+                    {{-- <input name="id_supplier" class="form-control" value="{{ $brgbaru->id_supplier }}"> --}}
+                    <select class="form-control" name="id_supplier" id="id_supplier">
+                        <option selected disabled>Pilih ID Supplier ...</option>
                         @foreach($suppliers as $supplier)
-                            <option data-row="{{$supplier}}" value="{{$supplier->nama_supplier}}">{{$supplier->nama_supplier}}</option>
+                            <option data-row="{{$supplier}}" value="{{$supplier->id_supplier}}">{{$supplier->id_supplier}}</option>
                         @endforeach
                     </select>
                     <div class="text-danger">
-                        @error('nama_supplier')
+                        @error('id_supplier')
                             {{ $message }}
                         @enderror
                     </div>
@@ -58,15 +59,15 @@
 <br>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
-                      <strong>No. Telepon</strong>
-                      <input type="text" id="telp" name="telp" class="form-control" placeholder="Masukkan No. Telepon" autocomplete="off" readonly>
-                      @error('telp')
+                      <strong>Nama Supplier</strong>
+                      <input type="text" id="nama_supplier" name="nama_supplier" class="form-control" autocomplete="off" readonly>
+                      <!-- @error('nama_supplier')
                           <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                      @enderror
+                      @enderror -->
                   </div>
                 </div>
                 <br>
-
+<!-- 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
                       <strong>Alamat</strong>
@@ -76,7 +77,7 @@
                       @enderror
                   </div>
                 </div>
-                <br>
+                <br> -->
 
                 <div class="row ml-auto">
                     <div class="col">
@@ -115,19 +116,7 @@
                 </div>
 
                 <br>
-
-                <div class="row ml-auto">
-                    <div class="col">
-                        <strong>Harga</strong>
-                        <input type="number" id="harga" name="harga" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off">
-                        @error('harga')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-
-            <br>
-            <div class="form-group">
+                <div class="form-group">
                     <label> <strong>Satuan</strong></label>
                     {{-- <input name="satuan" class="form-control" value="{{ $brgbaru->satuan }}"> --}}
                     <select class="form-control" name="satuan" id="satuan">
@@ -143,6 +132,29 @@
                     </div>
                 </div>
                 <br>
+                <div class="row ml-auto">
+                    <div class="col">
+                        <strong>Harga Per Satuan</strong>
+                        <input type="number" id="harga_beli" name="harga_beli" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off">
+                        @error('harga_beli')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <br>
+
+                <div class="row ml-auto">
+                    <div class="col">
+                        <strong>Harga Jual</strong>
+                        <input type="number" id="harga_jual" name="harga_jual" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off" >
+                        @error('harga_jual')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <br>
+
+                
 
                 <div class="row ml-auto">
                     <div class="col">
@@ -157,7 +169,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Total Harga</strong>
-                        <input type="number" id="totalhrg" name="totalhrg" onkeyup="sum();" class="form-control" placeholder="Masukkan Total Harga" autocomplete="off" readonly>
+                        <input type="number" id="totalhrg" name="totalhrg" onkeyup="sum();" class="form-control" placeholder="Masukkan Total Harga" autocomplete="off" >
                         @error('totalhrg')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -192,27 +204,41 @@
     </section>
     <script>
     $(document).ready(function() {
-        $(document).on('change', '#nama_supplier', function(){
+        $(document).on('change', '#id_supplier', function(){
             // var res   =  $(this).find(':selected').data('row');
             var res   =  $(this).find(':selected').data('row');
             console.log(res);
             // $('#rating_film').val('active');
             // $('#genre_film').val('keisi');
-            $('#telp').val(res.telp);
-            $('#alamat').val(res.alamat);
+            $('#nama_supplier').val(res.nama_supplier);
+            // $('#alamat').val(res.alamat);
             // $('#tahun_film').val('tahunnya');
         });
     });
     </script>
     <script>
         function sum(){
-		var txtFirstNumberValue = document.getElementById('harga').value;
+		var txtFirstNumberValue = document.getElementById('harga_beli').value;
 		var txtSecondNumberValue = document.getElementById('jumlah').value;
 		var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
 		if (!isNaN(result)){
 			document.getElementById('totalhrg').value=result;
 		}
+        var result2 = parseInt(txtFirstNumberValue) + (parseInt(txtFirstNumberValue)*0.05);
+		if (!isNaN(result2)){
+			document.getElementById('harga_jual').value=result2;
+		}
 	}
     </script>
+    <!-- <script>
+        function sum(){
+		var txtFirstNumberValue = document.getElementById('harga_beli').value;
+		// var txtSecondNumberValue = document.getElementById('jumlah').value;
+		var result = parseInt(txtFirstNumberValue) + (parseInt(txtFirstNumberValue)*0.05);
+		if (!isNaN(result)){
+			document.getElementById('harga_jual').value=result;
+		}
+	}
+    </script> -->
 
 @endsection

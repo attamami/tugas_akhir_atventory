@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restoks', function (Blueprint $table) {
+        Schema::create('penjualans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('id_restok',20);
-            $table->string('id_supplier',20);
-            // $table->string('nama_supplier',100);
-            // $table->string('telp',20);
-            // $table->string('alamat',100);
+            $table->string('id_penjualan',20);
+            $table->string('id_outlet',100);
             $table->string('id_barang',20);
             // $table->string('nama_barang',50);
             // $table->string('jenis_barang',20);
@@ -27,7 +24,7 @@ return new class extends Migration
             // $table->string('satuan',15);
             $table->integer('jumlah');
             $table->integer('totalhrg');
-            $table->date('tgl_beli');
+            $table->date('tgl_jual');
             $table->timestamps();
         });
     }
@@ -39,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restoks');
+        Schema::dropIfExists('penjualans');
     }
 };

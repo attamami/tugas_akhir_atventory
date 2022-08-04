@@ -69,15 +69,24 @@
 
                 <div class="row ml-auto">
                     <div class="col">
-                        <strong>Harga</strong>
-                        <input type="text" id="harga" name="harga" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off">
+                        <strong>Harga Beli</strong>
+                        <input type="number" id="harga_beli" name="harga_beli" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off">
+                        @error('harga_beli')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <br>
+                <div class="row ml-auto">
+                    <div class="col">
+                        <strong>Harga Jual</strong>
+                        <input type="number" id="harga_jual" name="harga_jual" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off">
                         @error('harga')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-
-            <br>
+                <br>
             <div class="form-group">
                     <label> <strong>Satuan</strong></label>
                     {{-- <input name="satuan" class="form-control" value="{{ $barang->satuan }}"> --}}
@@ -90,6 +99,16 @@
                     <div class="text-danger">
                         @error('satuan')
                             {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+                <br>
+                <div class="row ml-auto">
+                    <div class="col">
+                        <strong>Stok</strong>
+                        <input type="number" id="stok" name="stok" class="form-control" placeholder="Masukkan Stok Barang" autocomplete="off">
+                        @error('stok')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -112,5 +131,14 @@
       </div>
     </section>
 
+    <script>
+        function sum(){
+		var txtFirstNumberValue = document.getElementById('harga_beli').value;
+        var result = parseInt(txtFirstNumberValue) + (parseInt(txtFirstNumberValue)*0.05);
+		if (!isNaN(result)){
+			document.getElementById('harga_jual').value=result;
+		}
+	}
+    </script>
 
 @endsection

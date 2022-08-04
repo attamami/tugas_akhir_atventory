@@ -5,9 +5,14 @@ use App\Http\Controllers\SalesdController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\StokController;
 use App\Http\Controllers\BrgbaruController;
 use App\Http\Controllers\RestokController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PiutangController;
+use App\Http\Controllers\HutangController;
+use App\Http\Controllers\LaporanpenjualanController;
+use App\Http\Controllers\LaporanpembelianController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,19 +42,37 @@ Route::resource('outlet', OutletController::class);
 
 Route::get('barang', [BarangController::class, 'index'])->name('barang.index');
 Route::get('barang/create', [BarangController::class, 'create'])->name('barang.create');
-Route::get('barang/show/{id}', [BarangController::class, 'show'])->name('barang.show');
+// Route::get('barang/show/{id}', [BarangController::class, 'show'])->name('barang.show');
 Route::resource('barang', BarangController::class);
-
-Route::get('stok', [StokController::class, 'index'])->name('stok.index');
-Route::get('stok/create', [StokController::class, 'create'])->name('stok.create');
-Route::resource('stok', StokController::class);
 
 Route::get('brgbaru', [BrgbaruController::class, 'index'])->name('brgbaru.index');
 Route::get('brgbaru/create', [BrgbaruController::class, 'create'])->name('brgbaru.create');
-Route::get('brgbaru/show/{id}', [BrgbaruController::class, 'show'])->name('brgbaru.show');
+// Route::get('brgbaru/show/{id}', [BrgbaruController::class, 'show'])->name('brgbaru.show');
 Route::resource('brgbaru', BrgbaruController::class);
 
 Route::get('restok', [RestokController::class, 'index'])->name('restok.index');
 Route::get('restok/create', [RestokController::class, 'create'])->name('restok.create');
-Route::get('restok/show/{id}', [RestokController::class, 'show'])->name('restok.show');
+// Route::get('restok/show/{id}', [RestokController::class, 'show'])->name('restok.show');
 Route::resource('restok', RestokController::class);
+
+Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
+Route::get('penjualan/create', [PenjualanController::class, 'create'])->name('penjualan.create');
+// Route::get('penjualan/show/{id}', [PenjualanController::class, 'show'])->name('penjualan.show');
+Route::resource('penjualan', PenjualanController::class);
+
+Route::get('piutang', [PiutangController::class, 'index'])->name('piutang.index');
+Route::get('piutang/create', [PiutangController::class, 'create'])->name('piutang.create');
+Route::resource('piutang', PiutangController::class);
+
+Route::get('hutang', [HutangController::class, 'index'])->name('hutang.index');
+Route::get('hutang/create', [HutangController::class, 'create'])->name('hutang.create');
+Route::resource('hutang', HutangController::class);
+
+Route::get('laporan_penjualan', [LaporanpenjualanController::class, 'index'])->name('laporan_penjualan.index');
+Route::get('laporan_penjualan/print', [LaporanpenjualanController::class, 'print'])->name('laporan_penjualan.print');
+Route::post('laporan_penjualan/search', [LaporanpenjualanController::class, 'search'])->name('laporan_penjualan.search');
+Route::resource('laporan_penjualan', LaporanpenjualanController::class);
+
+// Route::get('laporan_pembelian', [Laporanpembelian::class, 'index'])->name('laporan_pembelian.index');
+// Route::get('laporan_pembelian/print', [Laporanpembelian::class, 'print'])->name('laporan_pembelian.print');
+// Route::resource('laporan_pembelian', Laporanpembelian::class);

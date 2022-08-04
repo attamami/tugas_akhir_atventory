@@ -67,16 +67,25 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label>Harga</label>
-                                <input name="harga" class="form-control" value="{{ $barang->harga }}">
+                                <label>Harga Beli</label>
+                                <input type="number" name="harga_beli" class="form-control" value="{{ $barang->harga_beli }}">
                                 <div class="text-danger">
-                                    @error('harga')
+                                    @error('harga_beli')
                                         {{ $message }}
                                     @enderror
                                 </div>
                             </div>
                             <br>
-
+                            <div class="form-group">
+                                <label>Harga Jual</label>
+                                <input type="number" name="harga_jual" class="form-control" value="{{ $barang->harga_jual }}">
+                                <div class="text-danger">
+                                    @error('harga_jual')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                            </div>
+                            <br>
                             <div class="form-group">
                                 <label>Satuan</label>
                                 {{-- <input name="satuan" class="form-control" value="{{ $barang->satuan }}"> --}}
@@ -91,6 +100,11 @@
                                         {{ $message }}
                                     @enderror
                                 </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Stok</label>
+                                <input type="number" name="stok" class="form-control" value="{{ $barang->stok}}" readonly>
                             </div>
                             <br>
                             

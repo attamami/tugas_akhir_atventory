@@ -35,8 +35,10 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Jenis Barang</th>
-                    <th scope="col">Harga</th>
+                    <th scope="col">Harga Beli</th>
+                    <th scope="col">Harga Jual</th>
                     <th scope="col">Satuan</th>
+                    <th scope="col">Stok</th>
                   </tr>
                 </thead>
                 @foreach ($barang as $data)
@@ -45,10 +47,12 @@
                     <td>{{ $data->id_barang }}</td>
                     <td>{{ $data->nama_barang }}</td>
                     <td>{{ $data->jenis_barang }}</td>
-                    <td>Rp {{ number_format($data->harga) }}</td>
+                    <td>Rp {{ number_format($data->harga_beli) }}</td>
+                    <td>Rp {{ number_format($data->harga_jual) }}</td>
                     <td>{{ $data->satuan }}</td>
+                    <td>{{ $data->stok }}</td>
                     <td>
-                    <a href="{{ route('barang.show',$data->id) }}" class="btn btn-info ri-eye-line"></a>
+                    <!-- <a href="{{ route('barang.show',$data->id) }}" class="btn btn-info ri-eye-line"></a> -->
                     <a href="{{ route('barang.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>
                       <form action="{{ route('barang.destroy',$data->id) }}" method="POST" class="d-inline">
                         @csrf

@@ -1,16 +1,16 @@
 @extends('layout')
-@section('title','Data Pembelian & Barang Masuk - ATventory')
+@section('title','Data Penjualan & Barang Keluar - ATventory')
 @section('content')
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <main id="main" class="main">
 
 <div class="pagetitle">
-  <h1>Data Pembelian & Barang Masuk</h1>
+  <h1>Data Penjualan & Barang Keluar</h1>
   <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">Pembelian & Barang Masuk</li>    
-        <li class="breadcrumb-item">Re-Stok</li>
+        <li class="breadcrumb-item">Penjualan & Barang Keluar</li>    
+        <!-- <li class="breadcrumb-item">Re-Stok</li> -->
         <li class="breadcrumb-item active">Tambah</li>
       </ol>
   </nav>
@@ -22,35 +22,40 @@
 
           <div class="card" style="width: 100%;">
             <div class="card-body" >
-              <h5 class="card-title">Pembelian & Barang Masuk</h5>
+              <h5 class="card-title">Penjualan & Barang Keluar</h5>
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                     <p>{{ $message }}</p>
                     </div>
+                @elseif(($message = Session::get('error')))
+                    <div class="alert alert-danger">
+                    <p>{{ $message }}</p>
+                    </div>
                 @endif
-            <form action="{{ route('restok.store') }}" method="POST" enctype="multipart/form-data">
+
+            <form action="{{ route('penjualan.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="content">
                 <div class="row ml-auto">
                     <div class="col">
-                        <strong>ID Pembelian</strong>
-                        <input type="text" id="id_restok" name="id_restok" class="form-control" placeholder="Masukkan ID Pembelian" autocomplete="off">
-                        @error('id_restok')
+                        <strong>ID Penjualan</strong>
+                        <input type="text" id="id_penjualan" name="id_penjualan" class="form-control" placeholder="Masukkan ID Penjualan" autocomplete="off">
+                        @error('id_penjualan')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="form-group">
                     <label><strong></strong></label>
-                    {{-- <input name="id_supplier" class="form-control" value="{{ $restok->id_supplier }}"> --}}
-                    <select class="form-control" name="id_supplier" id="id_supplier">
-                        <option selected disabled>Pilih ID Supplier ...</option>
-                        @foreach($suppliers as $supplier)
-                            <option data-row="{{$supplier}}" value="{{$supplier->id_supplier}}">{{$supplier->id_supplier}}</option>
+                    {{-- <input name="id_outlet" class="form-control" value="{{ $penjualan->id_outlet }}"> --}}
+                    <select class="form-control" name="id_outlet" id="id_outlet">
+                        <option selected disabled>Pilih ID Outlet ...</option>
+                        @foreach($outlets as $outlet)
+                            <option data-row="{{$outlet}}" value="{{$outlet->id_outlet}}">{{$outlet->id_outlet}}</option>
                         @endforeach
                     </select>
                     <div class="text-danger">
-                        @error('id_supplier')
+                        @error('id_outlet')
                             {{ $message }}
                         @enderror
                     </div>
@@ -58,9 +63,9 @@
 <br>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
-                      <strong>Nama Supplier</strong>
-                      <input type="text" id="nama_supplier" name="nama_supplier" class="form-control" placeholder="Masukkan Nama Supplier" autocomplete="off" readonly>
-                      @error('nama_supplier')
+                      <strong>Nama Outlet</strong>
+                      <input type="text" id="nama_outlet" name="nama_outlet" class="form-control" placeholder="Masukkan Nama Outlet" autocomplete="off" readonly>
+                      @error('nama_outlet')
                           <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
                   </div>
@@ -68,7 +73,7 @@
                 <br>
                 <div class="form-group">
                     <label><strong>ID Barang</strong></label>
-                    {{-- <input name="id_barang" class="form-control" value="{{ $restok->id_barang }}"> --}}
+                    {{-- <input name="id_barang" class="form-control" value="{{ $penjualan->id_barang }}"> --}}
                     <select class="form-control" name="id_barang" id="id_barang">
                         <option selected disabled>Pilih ID Barang ...</option>
                         @foreach($barangs as $barang)
@@ -117,7 +122,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Harga Per Satuan</strong>
-                        <input type="number" id="harga_beli" name="harga_beli" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga" autocomplete="off" readonly>
+                        <input type="number" id="harga_jual" name="harga_jual" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga" autocomplete="off" readonly>
                         @error('harga_beli')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -133,6 +138,7 @@
                         @enderror
                     </div>
                 </div>
+                
                 <br>
                 <div class="row ml-auto">
                     <div class="col">
@@ -146,9 +152,9 @@
                 <br>
                 <div class="row ml-auto">
                     <div class="col">
-                        <strong>Tanggal Beli</strong>
-                        <input type="date" id="tgl_beli" name="tgl_beli" class="form-control" placeholder="Masukkan Tanggal Beli" autocomplete="off" value="{{ date('Y-m-d', strtotime("+0 day")) }}">
-                        @error('tgl_beli')
+                        <strong>Tanggal Jual</strong>
+                        <input type="date" id="tgl_jual" name="tgl_jual" class="form-control" placeholder="Masukkan Tanggal Jual" autocomplete="off" value="{{ date('Y-m-d', strtotime("+0 day")) }}">
+                        @error('tgl_jual')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
@@ -156,7 +162,7 @@
             <br>
             <div class="">
                 <button type="submit" class="btn btn-primary ml-3">Submit</button> 
-                <a class="btn btn-primary" href="{{ route('restok.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('penjualan.index') }}"> Back</a>
             </div>
                 
             </div>
@@ -172,11 +178,11 @@
     </section>
     <script>
     $(document).ready(function() {
-        $(document).on('change', '#id_supplier', function(){
+        $(document).on('change', '#id_outlet', function(){
             // var res   =  $(this).find(':selected').data('row');
             var res   =  $(this).find(':selected').data('row');
             console.log(res);
-            $('#nama_supplier').val(res.nama_supplier);
+            $('#nama_outlet').val(res.nama_outlet);
             // $('#alamat').val(res.alamat);
         });
     });
@@ -192,14 +198,14 @@
             console.log(res);
             $('#nama_barang').val(res.nama_barang);
             $('#jenis_barang').val(res.jenis_barang);
-            $('#harga_beli').val(res.harga_beli);
+            $('#harga_jual').val(res.harga_jual);
             $('#satuan').val(res.satuan);
         });
     });
     </script>
     <script>
         function sum(){
-		var txtFirstNumberValue = document.getElementById('harga_beli').value;
+		var txtFirstNumberValue = document.getElementById('harga_jual').value;
 		var txtSecondNumberValue = document.getElementById('jumlah').value;
 		var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
 		if (!isNaN(result)){

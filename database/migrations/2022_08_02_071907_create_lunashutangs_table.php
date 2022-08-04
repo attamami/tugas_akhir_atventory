@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -13,14 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stoks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('id_barang',10);
-            $table->string('nama_barang',100);
-            $table->integer('stok');
-            $table->string('satuan',20);
+        Schema::create('lunashutangs', function (Blueprint $table) {
+            $table->id();
+            $table->string('jenis_lunas',50);
             $table->timestamps();
         });
+        DB::table('lunashutangs')->insert([
+            ['id' => '1', 'jenis_lunas' => 'Lunas'],
+            ['id' => '2', 'jenis_lunas' => 'Belum Lunas'],
+        ]);
     }
 
     /**
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stoks');
+        Schema::dropIfExists('lunashutangs');
     }
 };
