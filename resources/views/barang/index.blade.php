@@ -27,7 +27,10 @@
                     <p>{{ $message }}</p>
                     </div>
                 @endif
+
+              @if(auth()->user()->level=='1')
               <a href="{{ route('barang.create') }}" class="btn btn-primary">Tambah Data</a>
+              @endif
               <!-- Table with stripped rows -->
               <table class="table datatable table-hover" id="table_anc" style="overflow-x: auto;">
                 <thead>
@@ -51,6 +54,8 @@
                     <td>Rp {{ number_format($data->harga_jual) }}</td>
                     <td>{{ $data->satuan }}</td>
                     <td>{{ $data->stok }}</td>
+                    
+                    @if(auth()->user()->level=='1')
                     <td>
                     <!-- <a href="{{ route('barang.show',$data->id) }}" class="btn btn-info ri-eye-line"></a> -->
                     <a href="{{ route('barang.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>
@@ -60,6 +65,7 @@
                         <button type="submit" class="btn btn-danger ri-delete-bin-5-line" onclick="return confirm('Yakin hapus data?')" ></button>
                       </form>
                     </td>
+                    @endif
                   </tr>
                 @endforeach
               </table>

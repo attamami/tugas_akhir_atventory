@@ -61,6 +61,8 @@
                     <td>{{ $data->tgl_hutang }}</td>
                     <td>{{ $data->jatuh_tempo }}</td>
                     <td>{{ $data->ket_lunas }}</td>
+                    
+                    @if(auth()->user()->level=='1')
                     <td>
                     <!-- <a href="{{ route('piutang.show',$data->id) }}" class="btn btn-info ri-eye-line"></a> -->
                     <a href="{{ route('piutang.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>
@@ -70,6 +72,7 @@
                         <button type="submit" class="btn btn-danger ri-delete-bin-5-line" onclick="return confirm('Yakin hapus data?')" ></button>
                       </form>
                     </td>
+                    @endif
                   </tr>
                 @endforeach
               </table>

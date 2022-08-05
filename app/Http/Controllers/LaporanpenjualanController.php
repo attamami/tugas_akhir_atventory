@@ -23,5 +23,18 @@ class LaporanpenjualanController extends Controller
         ->where('tgl_jual', '<=', $tglAkhir)
         ->get();
         return view('laporan_penjualan.index', $query);
+        // $tgl_awal = $request->tgl_awal;
+        // $tgl_akhir = $request->tgl_akhir;
+        // if($tgl_awal AND $tgl_akhir){
+        // $data = Penjualan::select('*')
+        // ->whereBetween('penjualan.tgl_jual',[$tgl_awal, $tgl_akhir])
+        // ->get();
+
+        // $sum_total = Penjualan::whereBetween(('tgl_jual',[$tgl_awal, $tgl_akhir]))
+        // ->sum('total')
+        // }
+        // else{
+        // $data['laporan_penjualan'] = Penjualan::orderBy('id','asc')->paginate();
+        // }
     }
 }

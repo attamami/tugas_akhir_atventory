@@ -198,5 +198,5 @@
 		}
 	}
     </script> -->
-
+</main>
 @endsection

@@ -46,7 +46,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="/" class="logo d-flex align-items-center">
-        <img src="{{asset('assets/img/logoatventory.png')}}" rel="icon">
+        <img src="{{asset('assets/img/logoatventory.png')}}" rel="icon" >
         <span class="d-none d-lg-block">ATventory</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -59,13 +59,13 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{asset('assets/img/user.png')}}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Admin Sumber Rezeki</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->username }}</span>
           </a><!-- End Profile Image Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Admin</h6>
-              <span>Sumber Rejeki</span>
+              <h6>{{ Auth::user()->name }}</h6>
+              <span>{{ Auth::user()->email }}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -82,7 +82,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{route('logout')}}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -101,23 +101,26 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
       <li class="nav-item">
         <a class="nav-link collapsed" href="/">
           <i class="ri-apps-line"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      @endif
 
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('barang.index') }}">
         <!-- <a class="nav-link collapsed" data-bs-target="#kontrol-nav" data-bs-toggle="collapse" href="{{ route('barang.index') }}"> -->
           <i class="ri-stack-line"></i><span>Data Barang</span>
           <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
-        
       </li><!-- End Components Nav -->
+      @endif
 
+      @if(auth()->user()->level=='1')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#beli-nav" data-bs-toggle="collapse" href="">
           <i class="ri-shopping-cart-2-line"></i><span>Pembelian & Barang Masuk</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -136,32 +139,42 @@
           </li>
         </ul>
       </li><!-- End Pembelian Nav -->
+      @endif
 
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('penjualan.index') }}">
           <i class="ri-money-dollar-circle-line"></i>
           <span>Penjualan & Barang Keluar</span>
         </a>
       </li>
+      @endif
 
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#piutang-nav" data-bs-toggle="collapse" href="#">
           <i class="ri-hand-coin-line"></i><span>Hutang Piutang</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="piutang-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          @if(auth()->user()->level=='1')
           <li>
             <a href="{{ route('hutang.index') }}">
               <i class="bi bi-circle"></i><span>Hutang Dagang</span>
             </a>
           </li>
+          @endif
+          @if(auth()->user()->level=='1' or auth()->user()->level=='2')
           <li>
             <a href="{{ route('piutang.index') }}">
               <i class="bi bi-circle"></i><span>Piutang Dagang</span>
             </a>
           </li>
+          @endif
         </ul>
       </li><!-- End Tables Nav -->
+      @endif
 
+      @if(auth()->user()->level=='1')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#entity-nav" data-bs-toggle="collapse" href="#">
           <i class="ri-bubble-chart-line"></i><span>Manajemen Entitas</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -184,8 +197,10 @@
           </li>
         </ul>
       </li>
+      @endif
 
       <!-- End Icons Nav -->
+      @if(auth()->user()->level=='1')
       <li class="nav-heading">Sistem</li>
 
       <li class="nav-item">
@@ -212,6 +227,7 @@
           <span>Manajemen User</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      @endif
 
       <!-- End Contact Page Nav -->
 
@@ -231,7 +247,7 @@
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">TAAT Progresif</a>
+      Designed by <a>TAAT Progresif</a>
     </div>
   </footer><!-- End Footer -->
 

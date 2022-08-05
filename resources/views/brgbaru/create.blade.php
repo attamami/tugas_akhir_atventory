@@ -240,5 +240,5 @@
 		}
 	}
     </script> -->
-
+</main>
 @endsection
