@@ -9,8 +9,8 @@
   <h1>Data Pembelian & Barang Masuk</h1>
   <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">Pembelian & Barang Masuk</li>    
-        <li class="breadcrumb-item active">Re-Stok</li>
+        <li class="breadcrumb-item active">Pembelian & Barang Masuk</li>    
+        
       </ol>
   </nav>
 </div><!-- End Page Title -->
@@ -27,7 +27,7 @@
                     <p>{{ $message }}</p>
                     </div>
                 @endif
-              <a href="{{ route('restok.create') }}" class="btn btn-primary">Tambah Data</a>
+              <a href="{{ route('pembelian.create') }}" class="btn btn-primary">Tambah Data</a>
               <!-- Table with stripped rows -->
               <table class="table datatable" id="table_anc" style="overflow-x: auto;">
                 <thead>
@@ -45,10 +45,10 @@
                     <th></th>
                   </tr>
                 </thead>
-                @foreach ($restok as $data)
+                @foreach ($pembelian as $data)
                   <tr>
                     
-                    <td>{{ $data->id_restok }}</td>
+                    <td>{{ $data->id_pembelian }}</td>
                     <td>{{ $data->id_supplier }}</td>
                     <td>{{ $data->id_barang }}</td>
                     <td>{{ $data->barang->nama_barang }}</td>
@@ -59,9 +59,9 @@
                     <td>Rp {{ number_format($data->totalhrg) }}</td>
                     <td>{{ $data->tgl_beli }}</td>
                     <!-- <td>
-                    <a href="{{ route('restok.show',$data->id) }}" class="btn btn-info ri-eye-line"></a>
-                    <a href="{{ route('restok.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>
-                      <form action="{{ route('restok.destroy',$data->id) }}" method="POST" class="d-inline">
+                    <a href="{{ route('pembelian.show',$data->id) }}" class="btn btn-info ri-eye-line"></a>
+                    <a href="{{ route('pembelian.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>
+                      <form action="{{ route('pembelian.destroy',$data->id) }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger ri-delete-bin-5-line" onclick="return confirm('Yakin hapus data?')" ></button>
@@ -70,7 +70,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $restok->links() !!}
+              {!! $pembelian->links() !!}
               <!-- End Table with stripped rows -->
 
             </div>

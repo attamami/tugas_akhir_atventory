@@ -10,7 +10,6 @@
   <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">Pembelian & Barang Masuk</li>    
-        <li class="breadcrumb-item">Barang Baru</li>
         <li class="breadcrumb-item active">Tambah</li>
       </ol>
   </nav>
@@ -28,22 +27,21 @@
                     <p>{{ $message }}</p>
                     </div>
                 @endif
-            <form action="{{ route('brgbaru.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('pembelian.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="content">
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>ID Pembelian</strong>
-                        <input type="text" id="id_beli" name="id_beli" class="form-control" placeholder="Masukkan ID Pembelian" autocomplete="off">
-                        @error('id_beli')
+                        <input type="text" id="id_pembelian" name="id_pembelian" class="form-control" placeholder="Masukkan ID Pembelian" autocomplete="off">
+                        @error('id_pembelian')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <br>
                 <div class="form-group">
-                    <label><strong>ID Supplier</strong></label>
-                    {{-- <input name="id_supplier" class="form-control" value="{{ $brgbaru->id_supplier }}"> --}}
+                    <label><strong></strong></label>
+                    {{-- <input name="id_supplier" class="form-control" value="{{ $pembelian->id_supplier }}"> --}}
                     <select class="form-control" name="id_supplier" id="id_supplier">
                         <option selected disabled>Pilih ID Supplier ...</option>
                         @foreach($suppliers as $supplier)
@@ -60,74 +58,57 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
                       <strong>Nama Supplier</strong>
-                      <input type="text" id="nama_supplier" name="nama_supplier" class="form-control" autocomplete="off" readonly>
-                      <!-- @error('nama_supplier')
-                          <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                      @enderror -->
-                  </div>
-                </div>
-                <br>
-<!-- 
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                  <div class="form-group">
-                      <strong>Alamat</strong>
-                      <input type="text" id="alamat" name="alamat" class="form-control" placeholder="Masukkan Alamat" autocomplete="off" readonly>
-                      @error('alamat')
+                      <input type="text" id="nama_supplier" name="nama_supplier" class="form-control" placeholder="Masukkan Nama Supplier" autocomplete="off" readonly>
+                      @error('nama_supplier')
                           <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
                   </div>
                 </div>
-                <br> -->
-
-                <div class="row ml-auto">
-                    <div class="col">
-                        <strong>ID Barang</strong>
-                        <input type="text" id="id_barang" name="id_barang" class="form-control" placeholder="Masukkan ID Barang" autocomplete="off">
+                <br>
+                <div class="form-group">
+                    <label><strong>ID Barang</strong></label>
+                    {{-- <input name="id_barang" class="form-control" value="{{ $pembelian->id_barang }}"> --}}
+                    <select class="form-control" name="id_barang" id="id_barang">
+                        <option selected disabled>Pilih ID Barang ...</option>
+                        @foreach($barangs as $barang)
+                            <option data-row="{{$barang}}" value="{{$barang->id_barang}}">{{$barang->id_barang}}</option>
+                        @endforeach
+                    </select>
+                    <div class="text-danger">
                         @error('id_barang')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            {{ $message }}
                         @enderror
                     </div>
                 </div>
-<br>
+                <br>
+                
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Nama Barang</strong>
-                        <input type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Masukkan Nama Barang" autocomplete="off">
+                        <input type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Masukkan Nama Barang" autocomplete="off" readonly>
                         @error('nama_barang')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-<br>
-                <div class="form-group">
-                    <label> <strong>Jenis Barang</strong></label>
-                    {{-- <input name="jenis_barang" class="form-control" value="{{ $brgbaru->jenis_barang }}"> --}}
-                    <select class="form-control" name="jenis_barang" id="jenis_barang">
-                        <option selected disabled>Pilih Jenis Barang ...</option>
-                        @foreach($jenisbarang as $jenis)
-                            <option data-row="{{$jenis}}" value="{{$jenis->nama_jenis}}">{{$jenis->nama_jenis}}</option>
-                        @endforeach
-                    </select>
-                    <div class="text-danger">
+                <br>
+                <div class="row ml-auto">
+                    <div class="col">
+                        <strong>Jenis Barang</strong>
+                        <input type="text" id="jenis_barang" name="jenis_barang" class="form-control" placeholder="Masukkan Jenis Barang" autocomplete="off" readonly>
                         @error('jenis_barang')
-                            {{ $message }}
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-
                 <br>
-                <div class="form-group">
-                    <label> <strong>Satuan</strong></label>
-                    {{-- <input name="satuan" class="form-control" value="{{ $brgbaru->satuan }}"> --}}
-                    <select class="form-control" name="satuan" id="satuan">
-                        <option selected disabled>Pilih Satuan ...</option>
-                        @foreach($satuans as $satuan)
-                            <option data-row="{{$satuan}}" value="{{$satuan->nama_satuan}}">{{$satuan->nama_satuan}}</option>
-                        @endforeach
-                    </select>
-                    <div class="text-danger">
+                
+                <div class="row ml-auto">
+                    <div class="col">
+                        <strong>Satuan</strong>
+                        <input type="text" id="satuan" name="satuan" class="form-control" placeholder="Masukkan Satuan" autocomplete="off" readonly>
                         @error('satuan')
-                            {{ $message }}
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
@@ -135,27 +116,13 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Harga Per Satuan</strong>
-                        <input type="number" id="harga_beli" name="harga_beli" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off">
+                        <input type="number" id="harga_beli" name="harga_beli" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga" autocomplete="off" readonly>
                         @error('harga_beli')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <br>
-
-                <div class="row ml-auto">
-                    <div class="col">
-                        <strong>Harga Jual</strong>
-                        <input type="number" id="harga_jual" name="harga_jual" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga Barang" autocomplete="off" >
-                        @error('harga_jual')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <br>
-
-                
-
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Jumlah</strong>
@@ -169,7 +136,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Total Harga</strong>
-                        <input type="number" id="totalhrg" name="totalhrg" onkeyup="sum();" class="form-control" placeholder="Masukkan Total Harga" autocomplete="off" >
+                        <input type="number" id="totalhrg" name="totalhrg" onkeyup="sum();" class="form-control" placeholder="Masukkan Total Harga" autocomplete="off">
                         @error('totalhrg')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -185,10 +152,10 @@
                         @enderror
                     </div>
                 </div>
-
+            <br>
             <div class="">
                 <button type="submit" class="btn btn-primary ml-3">Submit</button> 
-                <a class="btn btn-primary" href="{{ route('brgbaru.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('pembelian.index') }}"> Back</a>
             </div>
                 
             </div>
@@ -208,11 +175,24 @@
             // var res   =  $(this).find(':selected').data('row');
             var res   =  $(this).find(':selected').data('row');
             console.log(res);
-            // $('#rating_film').val('active');
-            // $('#genre_film').val('keisi');
             $('#nama_supplier').val(res.nama_supplier);
             // $('#alamat').val(res.alamat);
-            // $('#tahun_film').val('tahunnya');
+        });
+    });
+    </script>
+    <!-- <script>
+        var stokbaru = $(stoks.stok) + $('#jumlah').val();
+    </script> -->
+    <script>
+    $(document).ready(function() {
+        $(document).on('change', '#id_barang', function(){
+            // var res   =  $(this).find(':selected').data('row');
+            var res   =  $(this).find(':selected').data('row');
+            console.log(res);
+            $('#nama_barang').val(res.nama_barang);
+            $('#jenis_barang').val(res.jenis_barang);
+            $('#harga_beli').val(res.harga_beli);
+            $('#satuan').val(res.satuan);
         });
     });
     </script>
@@ -224,21 +204,7 @@
 		if (!isNaN(result)){
 			document.getElementById('totalhrg').value=result;
 		}
-        var result2 = parseInt(txtFirstNumberValue) + (parseInt(txtFirstNumberValue)*0.05);
-		if (!isNaN(result2)){
-			document.getElementById('harga_jual').value=result2;
-		}
 	}
     </script>
-    <!-- <script>
-        function sum(){
-		var txtFirstNumberValue = document.getElementById('harga_beli').value;
-		// var txtSecondNumberValue = document.getElementById('jumlah').value;
-		var result = parseInt(txtFirstNumberValue) + (parseInt(txtFirstNumberValue)*0.05);
-		if (!isNaN(result)){
-			document.getElementById('harga_jual').value=result;
-		}
-	}
-    </script> -->
 </main>
 @endsection

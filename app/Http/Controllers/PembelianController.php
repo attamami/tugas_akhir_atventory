@@ -2,43 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Restok;
+use App\Models\Pembelian;
+use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Barang;
-use Illuminate\Http\Request;
 
-class RestokController extends Controller
+class PembelianController extends Controller
 {
     public function index()
     {
-        $data['restok'] = Restok::orderBy('id','asc')->paginate();
-        return view('restok.index', $data);
+        $data['pembelian'] = Pembelian::orderBy('id','asc')->paginate();
+        return view('pembelian.index', $data);
     }
 
     public function create()
     {
         $suppliers = Supplier::get();
         $barangs = Barang::get();
-        return view('restok.create', compact('suppliers','barangs'));
+        return view('pembelian.create', compact('suppliers','barangs'));
     }
     public function store(Request $request)
     {
         $request->validate([
-            'id_restok' => 'required',
+            'id_pembelian' => 'required',
             'id_supplier' => 'required',
             'id_barang' => 'required',
             'jumlah' => 'required',
             'totalhrg' => 'required',
             'tgl_beli' => 'required',
         ]);
-        $restok = new Restok();
-        $restok->id_restok = $request->id_restok;
-        $restok->id_supplier = $request->id_supplier;
-        $restok->id_barang = $request->id_barang;
-        $restok->jumlah = $request->jumlah;
-        $restok->totalhrg = $request->totalhrg;
-        $restok->tgl_beli = $request->tgl_beli;
-        $restok->save();
+        $pembelian = new Pembelian();
+        $pembelian->id_pembelian = $request->id_pembelian;
+        $pembelian->id_supplier = $request->id_supplier;
+        $pembelian->id_barang = $request->id_barang;
+        $pembelian->jumlah = $request->jumlah;
+        $pembelian->totalhrg = $request->totalhrg;
+        $pembelian->tgl_beli = $request->tgl_beli;
+        $pembelian->save();
 
         // dd($request->id_barang);
         $barang = Barang::where('id_barang',$request->id_barang)->first();
@@ -46,7 +46,7 @@ class RestokController extends Controller
         $barang->stok += $request->jumlah;
         $barang->save();
         
-        return redirect()->route('restok.index')->with('success','Data Pembelian Telah Berhasil Ditambahkan.');
+        return redirect()->route('pembelian.index')->with('success','Data Pembelian Telah Berhasil Ditambahkan.');
     }
 
     // public function show(Restok $restok)
@@ -94,9 +94,9 @@ class RestokController extends Controller
     //     return redirect()->route('restok.index')->with('success','Data Pembelian Telah Berhasil Diubah');
     // }
 
-    public function destroy(Restok $restok)
+    public function destroy(Pembelian $pembelian)
     {
-        $restok->delete();
-        return redirect()->route('restok.index')->with('success','Data Pembelian Telah Berhasil Dihapus');
+        $pembelian->delete();
+        return redirect()->route('pembelian.index')->with('success','Data Pembelian Telah Berhasil Dihapus');
     }
 }

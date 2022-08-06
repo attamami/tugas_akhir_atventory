@@ -11,7 +11,7 @@ class Barang extends Model
     public function barangbaru(){
         return $this->belongsTo(Brgbaru::class,'foreign_key', 'id_barang');
     }
-    public function restok(){
+    public function pembelian(){
         return $this->belongsTo(Restok::class,'foreign_key', 'id_barang');
     }
     public function penjualan(){

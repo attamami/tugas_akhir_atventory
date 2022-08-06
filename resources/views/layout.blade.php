@@ -59,12 +59,12 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{asset('assets/img/user.png')}}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->username }}</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->nama_lengkap }}</span>
           </a><!-- End Profile Image Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>{{ Auth::user()->name }}</h6>
+              <h6>{{ Auth::user()->username }}</h6>
               <span>{{ Auth::user()->email }}</span>
             </li>
             <li>
@@ -122,22 +122,10 @@
 
       @if(auth()->user()->level=='1')
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#beli-nav" data-bs-toggle="collapse" href="">
-          <i class="ri-shopping-cart-2-line"></i><span>Pembelian & Barang Masuk</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" href="{{ route('pembelian.index') }}">
+          <i class="ri-shopping-cart-2-line"></i><span>Pembelian & Barang Masuk</span>
+          <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
-        <ul id="beli-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route('brgbaru.index') }}">
-              <i class="bi bi-circle"></i><span>Barang Baru</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{{ route('restok.index') }}">
-              <i class="bi bi-circle"></i><span>Re-Stok</span>
-            </a>
-          </li>
-        </ul>
       </li><!-- End Pembelian Nav -->
       @endif
 
@@ -222,7 +210,7 @@
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="{{route('manajemen_user.index')}}">
           <i class="ri-settings-fill"></i>
           <span>Manajemen User</span>
         </a>

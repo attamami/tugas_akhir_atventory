@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restoks', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('id_restok',20);
+        Schema::create('pembelians', function (Blueprint $table) {
+            $table->id();
+            $table->string('id_pembelian',20);
             $table->string('id_supplier',20);
             // $table->string('nama_supplier',100);
             // $table->string('telp',20);
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restoks');
+        Schema::dropIfExists('pembelians');
     }
 };

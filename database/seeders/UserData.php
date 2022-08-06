@@ -17,17 +17,19 @@ class UserData extends Seeder
     {
         $user = [
             [
-                'name' => 'admin',
+                'nama_lengkap' => 'Admin Sumber Rejeki',
+                'posisi' => 'Admin',
+                'username' => 'adminsr',
                 'email' => 'admin@gmail.com',
                 'level' => 1,
                 'password' => bcrypt('1234')
             ],
-            [
-                'name' => 'sales',
-                'email' => 'sales@gmail.com',
-                'level' => 2,
-                'password' => bcrypt('1234')
-            ]
+            // [
+            //     'name' => 'sales',
+            //     'email' => 'sales@gmail.com',
+            //     'level' => 2,
+            //     'password' => bcrypt('1234')
+            // ]
         ];
         foreach($user as $key => $value){
             User::create($value);
