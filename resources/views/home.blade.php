@@ -78,39 +78,6 @@
         <div class="col-lg-8">
           <div class="row">
 
-            <!-- Sales Card -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
-
-                <div class="card-body">
-                  <h5 class="card-title">Data Outlet</h5>
-
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nama Outlet</th>
-                        <th scope="col">Telp</th>
-                        <th scope="col">Alamat</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($outlet as $data)
-                      <tr>
-                        <th scope="row"><a href="#">{{$data->nama_outlet }}</a></th>
-                        <td>{{$data->telp}}</td>
-                        <td>{{$data->alamat}}</td>
-                        
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-
-                </div>
-
-              </div>
-            </div><!-- End Sales Card -->
-
             <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
@@ -144,6 +111,38 @@
 
               </div>
             </div><!-- End Recent Sales -->
+            <!-- Sales Card -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+                <div class="card-body">
+                  <h5 class="card-title">Data Outlet</h5>
+
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nama Outlet</th>
+                        <th scope="col">Telp</th>
+                        <th scope="col">Alamat</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($outlet as $data)
+                      <tr>
+                        <th scope="row"><a href="#">{{$data->nama_outlet }}</a></th>
+                        <td>{{$data->telp}}</td>
+                        <td>{{$data->alamat}}</td>
+                        
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
 
           </div>
         </div><!-- End Left side columns -->
