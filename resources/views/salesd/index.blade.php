@@ -18,8 +18,8 @@
 <section class="section">
       <div class="row">
         <div class="col-lg-12">
-        <div class="scrolling-wrapper">
-          <div class="card">
+        <!-- <div class="scrolling-wrapper"> -->
+          <div class="card overflow-auto">
             <div class="card-body">
               <h5 class="card-title">Data Sales</h5>
                 @if ($message = Session::get('success'))
@@ -62,7 +62,7 @@
             </div>
           </div>
 
-        </div>
+        <!-- </div> -->
       </div>
       </div>
     </section>

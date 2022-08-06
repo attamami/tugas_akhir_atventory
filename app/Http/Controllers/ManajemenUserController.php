@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class ManajemenUserController extends Controller
 {
@@ -14,6 +15,7 @@ class ManajemenUserController extends Controller
     {
         $data['manajemen_user'] = User::orderBy('id','asc')->paginate();
         return view('manajemen_user.index', $data);
+
     }
 
     public function create()
@@ -33,7 +35,9 @@ class ManajemenUserController extends Controller
             
         ]);
 
-        $hashed = bcrypt($request->password);
+        $hashed = encrypt($request->password);
+        $unhashed = decrypt($hashed);
+        // dd($unhashed);
 
         $user = new User();
         $user->nama_lengkap = $request->nama_lengkap;

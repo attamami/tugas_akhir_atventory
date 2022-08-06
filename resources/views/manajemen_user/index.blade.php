@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-lg-12">
         <!-- <div class="scrolling-wrapper"> -->
-          <div class="card" style="width: 130%;">
+          <div class="card overflow-auto">
             <div class="card-body">
               <h5 class="card-title">Data Manajemen User</h5>
                 @if ($message = Session::get('success'))
@@ -49,6 +49,7 @@
                     <td>{{ $data->email }}</td>
                     <td>{{ $data->level }}</td>
                     <td>{{ $data->password }}</td>
+                    
                     <td>
                     <!-- <a href="{{ route('manajemen_user.show',$data->id) }}" class="btn btn-info ri-eye-line"></a> -->
                     <a href="{{ route('manajemen_user.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>

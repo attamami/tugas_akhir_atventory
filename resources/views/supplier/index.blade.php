@@ -19,7 +19,7 @@
       <div class="row form-group justify-content-center">
         <div class="col-lg-12">
         <!-- <div class="scrolling-wrapper"> -->
-          <div class="card">
+          <div class="card overflow-auto">
             <div class="card-body">
               <h5 class="card-title">Data Supplier</h5>
                 @if ($message = Session::get('success'))

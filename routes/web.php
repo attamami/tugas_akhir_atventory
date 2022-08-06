@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SalesdController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\OutletController;
@@ -33,9 +34,12 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('logout','logout')->name('logout');
 });
 
-Route::get('/', function () {
-    return view('home');
-})->middleware('NoBackButton')->middleware('auth');   
+// Route::get('/', function () {
+//     return view('home');
+// })->middleware('NoBackButton')->middleware('auth');   
+
+Route::resource('home', HomeController::class);
+Route::resource('/', HomeController::class);
 
 Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => ['CheckLevel:1']],function(){
