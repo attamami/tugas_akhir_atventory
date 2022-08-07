@@ -97,7 +97,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Password</strong>
-                        <input type="text" id="password" name="password" class="form-control" placeholder="Password User" autocomplete="off">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password User" autocomplete="off">
                         @error('password')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror

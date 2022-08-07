@@ -13,8 +13,7 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\HutangController;
-use App\Http\Controllers\LaporanpenjualanController;
-use App\Http\Controllers\LaporanpembelianController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +37,7 @@ Route::controller(AuthController::class)->group(function(){
 //     return view('home');
 // })->middleware('NoBackButton')->middleware('auth');   
 
-Route::resource('home', HomeController::class);
+// Route::resource('home', HomeController::class);
 Route::resource('/', HomeController::class);
 
 Route::group(['middleware' => ['auth']], function(){
@@ -53,15 +52,15 @@ Route::group(['middleware' => ['auth']], function(){
         Route::resource('piutang', PiutangController::class);
         Route::resource('hutang', HutangController::class);
         Route::resource('manajemen_user', ManajemenUserController::class);
+        // Route::get('/manajemen_user/show/{id}', [ManajemenUserController::class, 'show']);
 
         // Route::get('laporan_penjualan', [LaporanpenjualanController::class, 'index'])->name('laporan_penjualan.index');
-        // Route::get('laporan_penjualan/print', [LaporanpenjualanController::class, 'print'])->name('laporan_penjualan.print');
-        // Route::post('laporan_penjualan/search', [LaporanpenjualanController::class, 'search'])->name('laporan_penjualan.search');
-        Route::resource('laporan_penjualan', LaporanpenjualanController::class);
-
-        // Route::get('laporan_pembelian', [Laporanpembelian::class, 'index'])->name('laporan_pembelian.index');
-        // Route::get('laporan_pembelian/print', [Laporanpembelian::class, 'print'])->name('laporan_pembelian.print');
-        // Route::resource('laporan_pembelian', Laporanpembelian::class);
+        Route::get('laporan/print_penjualan', [LaporanController::class, 'print_penjualan'])->name('print_penjualan');
+        Route::get('laporan/print_pembelian', [LaporanController::class, 'print_pembelian'])->name('print_pembelian');
+        Route::get('laporan/export_penjualan', [LaporanController::class, 'export_penjualan'])->name('export_penjualan');
+        Route::get('laporan/export_pembelian', [LaporanController::class, 'export_pembelian'])->name('export_pembelian');
+        Route::post('laporan/search', [LaporanController::class, 'search'])->name('laporan.search');
+        Route::resource('laporan', LaporanController::class);
     });
 
     Route::group(['middleware' => ['CheckLevel:1,2' ]],function(){

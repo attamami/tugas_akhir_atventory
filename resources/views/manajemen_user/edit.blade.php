@@ -28,22 +28,15 @@
                     </div>
                 @endif
               <!-- Table with stripped rows -->
-                <form action="{{ route('manajemen_user.update',$manajemen_user->id) }}" method="POST" enctype="multipart/form-data">
-                    @dd($manajemen_user->id)
+                <form action="{{ route('manajemen_user.update',$user->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="content">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>ID Barang</label>
-                                <input name="id_barang" class="form-control" value="{{ $barang->id_barang }}" readonly>
-                                
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label>Nama Barang</label>
-                                <input name="nama_barang" class="form-control" value="{{ $barang->nama_barang }}">
+                                <label><strong>Nama Lengkap</strong></label>
+                                <input name="nama_lengkap" class="form-control" value="{{ $user->nama_lengkap }}">
                                 <div class="text-danger">
                                     @error('nama_barang')
                                         {{ $message }}
@@ -52,67 +45,65 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label>Jenis Barang</label>
-                                {{-- <input name="jenis_barang" class="form-control" value="{{ $barang->jenis_barang }}"> --}}
-                                <select class="form-control" name="jenis_barang" id="jenis_barang">
-                                    <option selected disabled>Pilih Jenis Barang ...</option>
-                                    @foreach($jenisbarang as $jenis)
-                                        <option data-row="{{$jenis}}" @if (isset($barang)) @if ($barang->jenis_barang == $jenis['nama_jenis']) selected @endif @endif>{{$jenis['nama_jenis']}}</option>
+                                <label><strong>Posisi</strong></label>
+                                <input name="posisi" class="form-control" value="{{ $user->posisi}}">
+                                <div class="text-danger">
+                                    @error('posisi')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label><strong>Username</strong></label>
+                                <input name="username" class="form-control" value="{{ $user->username}}">
+                                <div class="text-danger">
+                                    @error('username')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label><strong>Email</strong></label>
+                                <input name="email" class="form-control" value="{{ $user->email}}">
+                                <div class="text-danger">
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label><strong>Level</strong></label>
+                                {{-- <input name="level" class="form-control" value="{{ $user->level }}"> --}}
+                                <select class="form-control" name="level" id="level">
+                                    <option selected disabled>Pilih Level (1=Admin, 2=Sales) ...</option>
+                                    @foreach($leveluser as $lvl)
+                                        <option data-row="{{$lvl}}" @if (isset($user)) @if ($user->level == $lvl['userlevel']) selected @endif @endif>{{$lvl['userlevel']}}</option>
                                     @endforeach
                                 </select>
                                 <div class="text-danger">
-                                    @error('id_barang')
+                                    @error('level')
                                         {{ $message }}
                                     @enderror
                             </div>
                             <br>
                             <div class="form-group">
-                                <label>Harga Beli</label>
-                                <input type="number" name="harga_beli" class="form-control" value="{{ $barang->harga_beli }}">
+                                <label><strong>Password</strong></label>
+                                <input type="password" name="password" class="form-control" value="">
                                 <div class="text-danger">
-                                    @error('harga_beli')
+                                    @error('password')
                                         {{ $message }}
                                     @enderror
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group">
-                                <label>Harga Jual</label>
-                                <input type="number" name="harga_jual" class="form-control" value="{{ $barang->harga_jual }}">
-                                <div class="text-danger">
-                                    @error('harga_jual')
-                                        {{ $message }}
-                                    @enderror
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label>Satuan</label>
-                                {{-- <input name="satuan" class="form-control" value="{{ $barang->satuan }}"> --}}
-                                <select class="form-control" name="satuan" id="satuan">
-                                    <option selected disabled>Pilih Satuan ...</option>
-                                    @foreach($satuans as $satuan)
-                                        <option data-row="{{$satuan}}" @if (isset($barang)) @if ($barang->satuan == $satuan['nama_satuan']) selected @endif @endif>{{$satuan['nama_satuan']}}</option>
-                                    @endforeach
-                                </select>
-                                <div class="text-danger">
-                                    @error('satuan')
-                                        {{ $message }}
-                                    @enderror
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label>Stok</label>
-                                <input type="number" name="stok" class="form-control" value="{{ $barang->stok}}" readonly>
-                            </div>
-                            <br>
-                            
                             <div class="">
                                 <button type="submit" class="btn btn-primary ml-3">Simpan</button> 
-                                <a class="btn btn-primary" href="{{ route('barang.index') }}"> Kembali</a>
+                                <a class="btn btn-primary" href="{{ route('manajemen_user.index') }}"> Kembali</a>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </form>

@@ -26,12 +26,16 @@
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people"></i>
+                        <i class="ri-store-2-line"></i>
                     </div>
                     <div class="ps-3">
                       <!-- jumlah data outlet keseluruhan -->
                       <h6>{{$coutlet}}</h6>
-                      <span class="text-success small pt-1 fw-bold">Total Outlet
+                      @if(auth()->user()->level=='1')
+                      <span class="text-success small pt-1 fw-bold"> <a href="{{ route('outlet.index') }}">Total Outlet</a></span>
+                      @else
+                      <span class="text-success small pt-1 fw-bold">Total Outlet</span>
+                      @endif
 
                     </div>
                   </div>
@@ -100,7 +104,7 @@
                         <th scope="row"><a class="text-primary fw-bold" href="{{route('piutang.index')}}">{{$data->id_piutang }}</a></th>
                         <td>{{$data->nama_outlet}}</td>
                         <td>{{$data->nominal_hutang}}</td>
-                        <td><span class="badge bg-success">{{$data->ket_lunas}}</span></td>
+                        <td><span class="">{{$data->ket_lunas}}</span></td>
                       </tr>
                       @endforeach
                       

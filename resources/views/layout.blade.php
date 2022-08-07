@@ -71,12 +71,7 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
+            
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -192,21 +187,10 @@
       <li class="nav-heading">Sistem</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#laporan-nav" data-bs-toggle="collapse" href="#">
-          <i class="ri-file-list-3-line"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" href="{{route('laporan.index')}}">
+          <i class="ri-file-list-3-line"></i>
+          <span>Laporan</span>
         </a>
-        <ul id="laporan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{ route('laporan_penjualan.index') }}">
-              <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <i class="bi bi-circle"></i><span>Laporan Pembelian</span>
-            </a>
-          </li>
-        </ul>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">

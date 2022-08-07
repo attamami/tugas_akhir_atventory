@@ -35,8 +35,8 @@ class ManajemenUserController extends Controller
             
         ]);
 
-        $hashed = encrypt($request->password);
-        $unhashed = decrypt($hashed);
+        // $hashed = encrypt($request->password);
+        // $unhashed = decrypt($hashed);
         // dd($unhashed);
 
         $user = new User();
@@ -45,20 +45,24 @@ class ManajemenUserController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->level = $request->level;
-        $user->password = $hashed;
+        $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('manajemen_user.index')->with('success','Data User Telah Berhasil Ditambahkan.');
     }
 
-    // public function show(Barang $barang)
-    // {
-    //     return view('barang.detail',compact('barang'));
-    // }
-
-    public function edit(User $user)
+    public function show(User $user, $id)
     {
+        $user = User::select('*')->where('id', $id)->first();
+        return view('manajemen_user.detail',compact('user'));
+    }
+
+    public function edit(User $user, $id)
+    {
+        // $user = User::get($id);
+        $user = User::select('*')->where('id', $id)->first();
         $leveluser = Leveluser::get();
-        return view('manajemen_user.edit',compact('manajemen_user','leveluser'));
+        return view('manajemen_user.edit',compact('user','leveluser'));
+        // return $id;
     }
 
     public function update(Request $request, $id)
@@ -71,14 +75,15 @@ class ManajemenUserController extends Controller
             'level' => 'required',
             'password' => 'required',
         ]);
-        $hashed = bcrypt($request->password);
+        // $hashed = encrypt($request->password);
+        // $unhashed = decrypt($hashed);
         $user = User::find($id);
         $user->nama_lengkap = $request->nama_lengkap;
         $user->posisi = $request->posisi;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->level = $request->level;
-        $user->password = $hashed;
+        $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->route('manajemen_user.index')->with('success','Data User Telah Berhasil Diubah');
     }

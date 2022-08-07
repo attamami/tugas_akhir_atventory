@@ -36,7 +36,7 @@
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">Level</th>
-                    <th scope="col">Password</th>
+                    <!-- <th scope="col">Password</th> -->
                   </tr>
                 </thead>
                 
@@ -48,7 +48,7 @@
                     <td>{{ $data->username }}</td>
                     <td>{{ $data->email }}</td>
                     <td>{{ $data->level }}</td>
-                    <td>{{ $data->password }}</td>
+                    <!-- <td>{{ $data->password }}</td> -->
                     
                     <td>
                     <!-- <a href="{{ route('manajemen_user.show',$data->id) }}" class="btn btn-info ri-eye-line"></a> -->
