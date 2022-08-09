@@ -75,8 +75,8 @@
                   </tr>
               </table>
               
-              <button data-toggle="modal" data-target="#modalCetakJual" class="btn btn-danger">Print PDF</button> <a></a> 
-              <button data-toggle="modal" data-target="#modalExportJual" class="btn btn-success">Print Excel</button> <a></a> 
+              <button data-toggle="modal" data-target="#modalCetakJual" class="btn btn-danger ri-printer-line"> Print PDF</button> <a></a> 
+              <button data-toggle="modal" data-target="#modalExportJual" class="btn btn-success ri-file-excel-2-line"> Print Excel</button> <a></a> 
               <!-- End Table with stripped rows -->
 
             </div>
@@ -142,8 +142,8 @@
                   </tr>
               </table>
               
-              <button data-toggle="modal" data-target="#modalCetakBeli" class="btn btn-danger">Print PDF</button> <a></a> <a></a> 
-              <button data-toggle="modal" data-target="#modalExportBeli" class="btn btn-success">Print Excel</button> <a></a> 
+              <button data-toggle="modal" data-target="#modalCetakBeli" class="btn btn-danger ri-printer-line"> Print PDF</button> <a></a> <a></a> 
+              <button data-toggle="modal" data-target="#modalExportBeli" class="btn btn-success ri-file-excel-2-line">Print Excel</button> <a></a> 
               <!-- End Table with stripped rows -->
 
             </div>

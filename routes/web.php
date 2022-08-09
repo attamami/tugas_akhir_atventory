@@ -38,7 +38,7 @@ Route::controller(AuthController::class)->group(function(){
 // })->middleware('NoBackButton')->middleware('auth');   
 
 // Route::resource('home', HomeController::class);
-Route::resource('/', HomeController::class);
+Route::resource('/', HomeController::class)->middleware('NoBackButton')->middleware('auth');   ;
 
 Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => ['CheckLevel:1']],function(){
