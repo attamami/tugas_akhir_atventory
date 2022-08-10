@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('laporan/print_pembelian', [LaporanController::class, 'print_pembelian'])->name('print_pembelian');
         Route::get('laporan/export_penjualan', [LaporanController::class, 'export_penjualan'])->name('export_penjualan');
         Route::get('laporan/export_pembelian', [LaporanController::class, 'export_pembelian'])->name('export_pembelian');
-        Route::post('laporan/search', [LaporanController::class, 'search'])->name('laporan.search');
+        // Route::post('laporan/search', [LaporanController::class, 'search'])->name('laporan.search');
         Route::resource('laporan', LaporanController::class);
     });
 
@@ -68,6 +68,23 @@ Route::group(['middleware' => ['auth']], function(){
         Route::resource('barang', BarangController::class);
         Route::resource('penjualan', PenjualanController::class);
         Route::resource('piutang', PiutangController::class);
+    });
+
+    Route::group(['middleware' => ['CheckLevel:1,3']],function(){
+
+        Route::resource('salesd', SalesdController::class);
+        Route::resource('supplier', SupplierController::class);
+        Route::resource('outlet', OutletController::class);
+        Route::resource('barang', BarangController::class);
+        Route::resource('pembelian', PembelianController::class);
+        Route::resource('penjualan', PenjualanController::class);
+        Route::resource('piutang', PiutangController::class);
+        Route::resource('hutang', HutangController::class);
+        Route::get('laporan/print_penjualan', [LaporanController::class, 'print_penjualan'])->name('print_penjualan');
+        Route::get('laporan/print_pembelian', [LaporanController::class, 'print_pembelian'])->name('print_pembelian');
+        Route::get('laporan/export_penjualan', [LaporanController::class, 'export_penjualan'])->name('export_penjualan');
+        Route::get('laporan/export_pembelian', [LaporanController::class, 'export_pembelian'])->name('export_pembelian');
+        Route::resource('laporan', LaporanController::class);
     });
 });
 

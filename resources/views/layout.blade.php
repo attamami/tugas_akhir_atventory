@@ -96,7 +96,7 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
       <li class="nav-item">
         <a class="nav-link collapsed" href="/">
           <i class="ri-apps-line"></i>
@@ -105,7 +105,7 @@
       </li><!-- End Dashboard Nav -->
       @endif
 
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('barang.index') }}">
         <!-- <a class="nav-link collapsed" data-bs-target="#kontrol-nav" data-bs-toggle="collapse" href="{{ route('barang.index') }}"> -->
@@ -115,7 +115,7 @@
       </li><!-- End Components Nav -->
       @endif
 
-      @if(auth()->user()->level=='1')
+      @if(auth()->user()->level=='1' or auth()->user()->level=='3')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('pembelian.index') }}">
           <i class="ri-shopping-cart-2-line"></i><span>Pembelian & Barang Masuk</span>
@@ -124,7 +124,7 @@
       </li><!-- End Pembelian Nav -->
       @endif
 
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('penjualan.index') }}">
           <i class="ri-money-dollar-circle-line"></i>
@@ -133,20 +133,20 @@
       </li>
       @endif
 
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2')
+      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#piutang-nav" data-bs-toggle="collapse" href="#">
           <i class="ri-hand-coin-line"></i><span>Hutang Piutang</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="piutang-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          @if(auth()->user()->level=='1')
+          @if(auth()->user()->level=='1' or auth()->user()->level=='3')
           <li>
             <a href="{{ route('hutang.index') }}">
               <i class="bi bi-circle"></i><span>Hutang Dagang</span>
             </a>
           </li>
           @endif
-          @if(auth()->user()->level=='1' or auth()->user()->level=='2')
+          @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
           <li>
             <a href="{{ route('piutang.index') }}">
               <i class="bi bi-circle"></i><span>Piutang Dagang</span>
@@ -157,7 +157,7 @@
       </li><!-- End Tables Nav -->
       @endif
 
-      @if(auth()->user()->level=='1')
+      @if(auth()->user()->level=='1' or auth()->user()->level=='3')
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#entity-nav" data-bs-toggle="collapse" href="#">
           <i class="ri-bubble-chart-line"></i><span>Manajemen Entitas</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -183,7 +183,7 @@
       @endif
 
       <!-- End Icons Nav -->
-      @if(auth()->user()->level=='1')
+      @if(auth()->user()->level=='1' or auth()->user()->level=='3')
       <li class="nav-heading">Sistem</li>
 
       <li class="nav-item">
@@ -192,7 +192,8 @@
           <span>Laporan</span>
         </a>
       </li><!-- End Profile Page Nav -->
-
+      @endif
+      @if(auth()->user()->level=='1')
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('manajemen_user.index')}}">
           <i class="ri-settings-fill"></i>

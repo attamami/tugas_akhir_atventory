@@ -30,6 +30,7 @@ class PembelianExport implements FromCollection, WithHeadings
                 ->Join('barangs', 'pembelians.id_barang', '=', 'barangs.id_barang')
                 ->select(
                     'pembelians.id_pembelian',
+                    'pembelians.tgl_beli',
                     'pembelians.id_supplier',
                     'pembelians.id_barang',
                     'barangs.nama_barang',
@@ -38,7 +39,7 @@ class PembelianExport implements FromCollection, WithHeadings
                     'barangs.satuan',
                     'pembelians.jumlah',
                     'pembelians.totalhrg',
-                    'pembelians.tgl_beli',
+                    
                 )
                 ->whereBetween('pembelians.tgl_beli',[$this->tgl_awal,$this->tgl_akhir])
                 ->get();
@@ -51,6 +52,7 @@ class PembelianExport implements FromCollection, WithHeadings
     public function headings(): array{
         return [
             'ID Pembelian',
+            'Tanggal Beli',
             'ID Supplier',
             'ID Barang',
             'Nama Barang',
@@ -59,7 +61,7 @@ class PembelianExport implements FromCollection, WithHeadings
             'Satuan',
             'Jumlah',
             'Total Harga',
-            'Tanggal Beli',
+            
         ];
     }
 }

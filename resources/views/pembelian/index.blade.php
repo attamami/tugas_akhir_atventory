@@ -27,12 +27,15 @@
                     <p>{{ $message }}</p>
                     </div>
                 @endif
+              @if(auth()->user()->level=='1')
               <a href="{{ route('pembelian.create') }}" class="btn btn-primary">Tambah Data</a>
+              @endif
               <!-- Table with stripped rows -->
-              <table class="table datatable" id="table_anc" style="overflow-x: auto;">
+              <table class="table datatable table-hover" id="table_anc" style="overflow-x: auto;">
                 <thead>
                   <tr>
                     <th scope="col">ID Pembelian</th>
+                    <th scope="col">Tanggal Beli</th>
                     <th scope="col">ID Supplier</th>
                     <th scope="col">ID Barang</th>
                     <th scope="col">Nama Barang</th>
@@ -41,14 +44,14 @@
                     <th scope="col">Satuan</th>
                     <th scope="col">Jumlah</th>
                     <th scope="col">Total Harga</th>
-                    <th scope="col">Tanggal Beli</th>
-                    <th></th>
+                    
                   </tr>
                 </thead>
                 @foreach ($pembelian as $data)
                   <tr>
                     
                     <td>{{ $data->id_pembelian }}</td>
+                    <td>{{ $data->tgl_beli }}</td>
                     <td>{{ $data->id_supplier }}</td>
                     <td>{{ $data->id_barang }}</td>
                     <td>{{ $data->barang->nama_barang }}</td>
@@ -57,7 +60,7 @@
                     <td>{{ $data->barang->satuan }}</td>
                     <td>{{ $data->jumlah }}</td>
                     <td>Rp {{ number_format($data->totalhrg) }}</td>
-                    <td>{{ $data->tgl_beli }}</td>
+                    
                     <!-- <td>
                     <a href="{{ route('pembelian.show',$data->id) }}" class="btn btn-info ri-eye-line"></a>
                     <a href="{{ route('pembelian.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>

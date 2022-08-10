@@ -27,12 +27,15 @@
                     <p>{{ $message }}</p>
                     </div>
                 @endif
+              @if(auth()->user()->level=='1')
               <a href="{{ route('penjualan.create') }}" class="btn btn-primary">Tambah Data</a>
+              @endif
               <!-- Table with stripped rows -->
-              <table class="table datatable" id="table_anc" style="overflow-x: auto;">
+              <table class="table datatable table-hover" id="table_anc" style="overflow-x: auto;">
                 <thead>
                   <tr>
                     <th scope="col">ID Penjualan</th>
+                    <th scope="col">Tanggal Jual</th>
                     <th scope="col">ID Outlet</th>
                     <th scope="col">ID Barang</th>
                     <th scope="col">Nama Barang</th>
@@ -41,14 +44,14 @@
                     <th scope="col">Satuan</th>
                     <th scope="col">Jumlah</th>
                     <th scope="col">Total Harga</th>
-                    <th scope="col">Tanggal Jual</th>
-                    <th></th>
+                    
                   </tr>
                 </thead>
                 @foreach ($penjualan as $data)
                   <tr>
                     
                     <td>{{ $data->id_penjualan }}</td>
+                    <td>{{ $data->tgl_jual }}</td>
                     <td>{{ $data->id_outlet }}</td>
                     <td>{{ $data->id_barang }}</td>
                     <td>{{ $data->barang->nama_barang }}</td>
@@ -57,7 +60,7 @@
                     <td>{{ $data->barang->satuan }}</td>
                     <td>{{ $data->jumlah }}</td>
                     <td>Rp {{ number_format($data->totalhrg) }}</td>
-                    <td>{{ $data->tgl_jual }}</td>
+                    
                     <!-- <td>
                     <a href="{{ route('penjualan.show',$data->id) }}" class="btn btn-info ri-eye-line"></a>
                     <a href="{{ route('penjualan.edit',$data->id) }}" class="btn btn-success ri-edit-2-line"></a>

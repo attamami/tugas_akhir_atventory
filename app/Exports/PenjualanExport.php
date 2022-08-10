@@ -32,6 +32,7 @@ class PenjualanExport implements FromCollection, WithHeadings
                 ->Join('barangs', 'penjualans.id_barang', '=', 'barangs.id_barang')
                 ->select(
                     'penjualans.id_penjualan',
+                    'penjualans.tgl_jual',
                     'penjualans.id_outlet',
                     'penjualans.id_barang',
                     'barangs.nama_barang',
@@ -40,7 +41,7 @@ class PenjualanExport implements FromCollection, WithHeadings
                     'barangs.satuan',
                     'penjualans.jumlah',
                     'penjualans.totalhrg',
-                    'penjualans.tgl_jual',
+                    
                 )
                 ->whereBetween('penjualans.tgl_jual',[$this->tgl_awal,$this->tgl_akhir])
                 ->get();
@@ -53,6 +54,7 @@ class PenjualanExport implements FromCollection, WithHeadings
     public function headings(): array{
         return [
             'ID Penjualan',
+            'Tanggal Jual',
             'ID Outlet',
             'ID Barang',
             'Nama Barang',
@@ -61,7 +63,7 @@ class PenjualanExport implements FromCollection, WithHeadings
             'Satuan',
             'Jumlah',
             'Total Harga',
-            'Tanggal Jual',
+            
         ];
     }
 

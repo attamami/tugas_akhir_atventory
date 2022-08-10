@@ -35,6 +35,7 @@
                 <thead>
                   <tr>
                     <th scope="col">ID Pembelian</th>
+                    <th scope="col">Tanggal Beli</th>
                     <th scope="col">ID Supplier</th>
                     <th scope="col">ID Barang</th>
                     <th scope="col">Nama Barang</th>
@@ -43,7 +44,7 @@
                     <th scope="col">Satuan</th>
                     <th scope="col">Jumlah</th>
                     <th scope="col">Total Harga</th>
-                    <th scope="col">Tanggal Beli</th>
+                    
                   </tr>
                 </thead>
 
@@ -56,6 +57,7 @@
                 @foreach ($lap_pembelian as $data)
                   <tr>
                     <td>{{ $data->id_pembelian }}</td>
+                    <td>{{ $data->tgl_beli }}</td>
                     <td>{{ $data->id_supplier }}</td>
                     <td>{{ $data->id_barang }}</td>
                     <td>{{ $data->nama_barang }}</td>
@@ -65,16 +67,16 @@
                     <td>{{ $data->jumlah }}</td>
                     <td>Rp {{ number_format($data->totalhrg) }}</td>
                     @php($total += $data->totalhrg)
-                    <td>{{ $data->tgl_beli }}</td>
+                    
                   </tr>
                 @endforeach
                 <tr>
                     <td></td> <td></td>
                     <td></td> <td></td>
                     <td></td> <td></td>
-                    <td></td>
+                    <td></td> <td></td>
                     <td><strong>Total</strong></td>
-                    <td><strong>Rp {{number_format($total)}}</strong></td>  <td></td>
+                    <td><strong>Rp {{number_format($total)}}</strong></td> 
                   </tr>
                 </table>
                 @endif
