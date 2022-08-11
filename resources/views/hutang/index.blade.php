@@ -75,7 +75,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $hutang->links() !!}
+              
               <!-- End Table with stripped rows -->
 
             </div>

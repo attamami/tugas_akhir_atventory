@@ -73,7 +73,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $pembelian->links() !!}
+              
               <!-- End Table with stripped rows -->
 
             </div>

@@ -27,7 +27,7 @@
                     <p>{{ $message }}</p>
                     </div>
                 @endif
-              @if(auth()->user()->level=='1')
+              @if(auth()->user()->level=='1' or auth()->user()->level=='2')
               <a href="{{ route('penjualan.create') }}" class="btn btn-primary">Tambah Data</a>
               @endif
               <!-- Table with stripped rows -->
@@ -73,7 +73,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $penjualan->links() !!}
+              
               <!-- End Table with stripped rows -->
 
             </div>

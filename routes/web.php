@@ -63,14 +63,13 @@ Route::group(['middleware' => ['auth']], function(){
         Route::resource('laporan', LaporanController::class);
     });
 
-    Route::group(['middleware' => ['CheckLevel:1,2' ]],function(){
-        
+    Route::group(['middleware' => ['CheckLevel:2,1,3' ]],function(){
         Route::resource('barang', BarangController::class);
         Route::resource('penjualan', PenjualanController::class);
         Route::resource('piutang', PiutangController::class);
     });
 
-    Route::group(['middleware' => ['CheckLevel:1,3']],function(){
+    Route::group(['middleware' => ['CheckLevel:3,1,2']],function(){
 
         Route::resource('salesd', SalesdController::class);
         Route::resource('supplier', SupplierController::class);

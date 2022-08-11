@@ -96,16 +96,16 @@
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="/">
           <i class="ri-apps-line"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-      @endif
+      
 
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('barang.index') }}">
         <!-- <a class="nav-link collapsed" data-bs-target="#kontrol-nav" data-bs-toggle="collapse" href="{{ route('barang.index') }}"> -->
@@ -113,7 +113,7 @@
           <!-- <i class="bi bi-chevron-down ms-auto"></i> -->
         </a>
       </li><!-- End Components Nav -->
-      @endif
+      
 
       @if(auth()->user()->level=='1' or auth()->user()->level=='3')
       <li class="nav-item">
@@ -124,16 +124,16 @@
       </li><!-- End Pembelian Nav -->
       @endif
 
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('penjualan.index') }}">
           <i class="ri-money-dollar-circle-line"></i>
           <span>Penjualan & Barang Keluar</span>
         </a>
       </li>
-      @endif
+      
 
-      @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
+      
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#piutang-nav" data-bs-toggle="collapse" href="#">
           <i class="ri-hand-coin-line"></i><span>Hutang Piutang</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -146,16 +146,16 @@
             </a>
           </li>
           @endif
-          @if(auth()->user()->level=='1' or auth()->user()->level=='2' or auth()->user()->level=='3')
+          
           <li>
             <a href="{{ route('piutang.index') }}">
               <i class="bi bi-circle"></i><span>Piutang Dagang</span>
             </a>
           </li>
-          @endif
+          
         </ul>
       </li><!-- End Tables Nav -->
-      @endif
+      
 
       @if(auth()->user()->level=='1' or auth()->user()->level=='3')
       <li class="nav-item">

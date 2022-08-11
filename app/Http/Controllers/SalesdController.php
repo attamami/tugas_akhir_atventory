@@ -9,7 +9,7 @@ class SalesdController extends Controller
 {
     public function index()
     {
-        $data['salesd'] = Salesd::orderBy('id','asc')->paginate();
+        $data['salesd'] = Salesd::orderBy('id','asc')->get();
         return view('salesd.index', $data);
     }
 

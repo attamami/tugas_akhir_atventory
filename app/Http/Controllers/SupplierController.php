@@ -9,7 +9,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $data['supplier'] = Supplier::orderBy('id','asc')->paginate();
+        $data['supplier'] = Supplier::orderBy('id','asc')->get();
         return view('supplier.index', $data);
     }
 

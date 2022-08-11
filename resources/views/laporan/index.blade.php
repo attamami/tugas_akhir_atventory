@@ -33,7 +33,7 @@
                 @endif
               <!-- Table with stripped rows -->
 
-              <table class="table table-hover" id="table_anc" style="overflow-x: auto;">
+              <table class="table datatable table-hover" id="table_anc" style="overflow-x: auto;">
                 <thead>
                   <tr>
                     <th scope="col">ID Penjualan</th>
@@ -66,14 +66,14 @@
                     
                   </tr>
                 @endforeach
-                <tr>
+                <!-- <tr>
                     <td></td> <td></td>
                     <td></td> <td></td>
                     <td></td> <td></td>
                     <td></td> <td></td>
                     <td><strong>Total</strong></td>
                     <td><strong>Rp {{number_format($total)}}</strong></td> 
-                  </tr>
+                  </tr> -->
               </table>
               
               <button data-toggle="modal" data-target="#modalCetakJual" class="btn btn-danger ri-printer-line"> Print PDF</button> <a></a> 
@@ -102,7 +102,7 @@
                 @endif
               <!-- Table with stripped rows -->
               
-              <table class="table table-hover" id="table_anc" style="overflow-x: auto;">
+              <table class="table datatable table-hover" id="table_anc" style="overflow-x: auto;">
                 <thead>
                   <tr>
                     <th scope="col">ID Pembelian</th>
@@ -135,14 +135,14 @@
                     
                   </tr>
                 @endforeach
-                <tr>
+                <!-- <tr>
                     <td></td> <td></td>
                     <td></td> <td></td>
                     <td></td> <td></td>
                     <td></td> <td></td>
                     <td><strong>Total</strong></td>
                     <td><strong>Rp {{number_format($total)}}</strong></td>  
-                  </tr>
+                  </tr> -->
               </table>
               
               <button data-toggle="modal" data-target="#modalCetakBeli" class="btn btn-danger ri-printer-line"> Print PDF</button> <a></a> <a></a> 
@@ -243,7 +243,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="ri-close-circle-fill"></i> Close</button>
-          <button type="submit" class="btn btn-success"><i class="ri-printer-fill"></i> Print</button>
+          <button type="submit" class="btn btn-success"><i class="ri-printer-fill"></i> Download</button>
         </div>
       </form>
     </div>
@@ -273,7 +273,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="ri-close-circle-fill"></i> Close</button>
-          <button type="submit" class="btn btn-success"><i class="ri-printer-fill"></i> Print</button>
+          <button type="submit" class="btn btn-success"><i class="ri-printer-fill"></i> Download</button>
         </div>
       </form>
     </div>

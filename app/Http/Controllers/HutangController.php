@@ -12,7 +12,7 @@ class HutangController extends Controller
 {
     public function index()
     {
-        $data['hutang'] = Hutang::orderBy('id','asc')->paginate();
+        $data['hutang'] = Hutang::orderBy('id','asc')->get();
         return view('hutang.index', $data);
     }
 

@@ -12,7 +12,7 @@ class PiutangController extends Controller
 {
     public function index()
     {
-        $data['piutang'] = Piutang::orderBy('id','asc')->paginate();
+        $data['piutang'] = Piutang::orderBy('id','asc')->get();
         return view('piutang.index', $data);
     }
 

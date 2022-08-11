@@ -60,7 +60,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $outlet->links() !!}
+              
               <!-- End Table with stripped rows -->
 
             </div>

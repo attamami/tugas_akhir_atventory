@@ -10,7 +10,7 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $data['barang'] = Barang::orderBy('id','asc')->paginate();
+        $data['barang'] = Barang::orderBy('id','asc')->get();
         return view('barang.index', $data);
     }
 

@@ -6,6 +6,7 @@ use App\Models\Barang;
 use App\Models\Outlet;
 use App\Models\Pembelian;
 use App\Models\Penjualan;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class HomeController extends Controller
         $coutlet = Outlet::count();
         // $outlet = DB::table('outlets')->get();
         $outlet = Outlet::get();
-        $barang = Barang::get();
+        $barang = Barang::all();
         // $piutang = DB::table('piutangs')->get();
         $piutang = DB::table('piutangs')
             ->leftJoin('outlets', 'piutangs.id_outlet', '=', 'outlets.id_outlet')
@@ -27,8 +28,25 @@ class HomeController extends Controller
         $jual_today = Penjualan::where('tgl_jual','=', $date)->count();
         $beli_today = Pembelian::where('tgl_beli','=', $date)->count();
 
-        $penjualan = Penjualan::count();
-        $pembelian = Pembelian::count();
+        // $currentmonth = date('m');
+        $jual_month = Penjualan::whereYear('created_at', Carbon::now()->year)
+                        ->whereMonth('created_at', Carbon::now()->month)
+                        ->count();
+        $beli_month = Pembelian::whereYear('created_at', Carbon::now()->year)
+                        ->whereMonth('created_at', Carbon::now()->month)
+                        ->count();
+        
+        $total_jual = Penjualan::whereYear('created_at', Carbon::now()->year)
+                        ->whereMonth('created_at', Carbon::now()->month)
+                        ->select('totalhrg')
+                        ->sum('totalhrg');
+        $total_beli = Pembelian::whereYear('created_at', Carbon::now()->year)
+                        ->whereMonth('created_at', Carbon::now()->month)
+                        ->select('totalhrg')
+                        ->sum('totalhrg');
+        $laba = $total_jual - $total_beli;
+        // $penjualan = Penjualan::count();
+        // $pembelian = Pembelian::count();
 
         $jual_jan = Penjualan::whereMonth('tgl_jual','01')->count();
         $jual_feb = Penjualan::whereMonth('tgl_jual','02')->count();
@@ -61,10 +79,15 @@ class HomeController extends Controller
             'barang',
             'piutang',
             'coutlet',
-            'jual_today',
-            'beli_today',
-            'penjualan',
-            'pembelian',
+            // 'jual_today',
+            // 'beli_today',
+            'jual_month',
+            'beli_month',
+            'total_beli',
+            'total_jual',
+            'laba',
+            // 'penjualan',
+            // 'pembelian',
             'jual_jan',
             'jual_feb',
             'jual_mar',

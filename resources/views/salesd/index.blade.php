@@ -60,7 +60,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $salesd->links() !!}
+              
               <!-- End Table with stripped rows -->
 
             </div>

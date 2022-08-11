@@ -69,7 +69,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $barang->links() !!}
+              
               <!-- End Table with stripped rows -->
 
             </div>

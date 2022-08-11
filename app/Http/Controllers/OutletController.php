@@ -9,7 +9,7 @@ class OutletController extends Controller
 {
     public function index()
     {
-        $data['outlet'] = Outlet::orderBy('id','asc')->paginate();
+        $data['outlet'] = Outlet::orderBy('id','asc')->get();
         return view('outlet.index', $data);
     }
 

@@ -63,7 +63,7 @@
                   </tr>
                 @endforeach
               </table>
-              {!! $manajemen_user->links() !!}
+              
               <!-- End Table with stripped rows -->
 
             </div>

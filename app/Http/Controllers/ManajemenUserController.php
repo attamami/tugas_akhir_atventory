@@ -13,7 +13,7 @@ class ManajemenUserController extends Controller
 {
     public function index()
     {
-        $data['manajemen_user'] = User::orderBy('id','asc')->paginate();
+        $data['manajemen_user'] = User::orderBy('id','asc')->get();
         return view('manajemen_user.index', $data);
 
     }
