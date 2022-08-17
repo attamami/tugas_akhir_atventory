@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label><strong>Email</strong></label>
                                 <input name="email" class="form-control" value="{{ $user->email}}">
                                 <div class="text-danger">
@@ -73,12 +73,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <br>
+                            <br> -->
                             <div class="form-group">
                                 <label><strong>Level</strong></label>
                                 {{-- <input name="level" class="form-control" value="{{ $user->level }}"> --}}
                                 <select class="form-control" name="level" id="level">
-                                    <option selected disabled>Pilih Level (1=Admin, 2=Sales) ...</option>
+                                    <option selected disabled>Pilih Level (1=Admin, 2=Sales, 3=Supervisor) ...</option>
                                     @foreach($leveluser as $lvl)
                                         <option data-row="{{$lvl}}" @if (isset($user)) @if ($user->level == $lvl['userlevel']) selected @endif @endif>{{$lvl['userlevel']}}</option>
                                     @endforeach

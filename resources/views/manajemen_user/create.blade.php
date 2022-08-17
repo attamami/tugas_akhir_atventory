@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <br>
-                <div class="row ml-auto">
+                <!-- <div class="row ml-auto">
                     <div class="col">
                         <strong>Email</strong>
                         <input type="text" id="email" name="email" class="form-control" placeholder="Masukkan Email" autocomplete="off">
@@ -67,7 +67,7 @@
                         @enderror
                     </div>
                 </div>
-                <br>
+                <br> -->
                 <div class="form-group">
                     <label> <strong>Level User</strong></label>
                     {{-- <input name="level" class="form-control" value="{{ $manajemen_user->level }}"> --}}

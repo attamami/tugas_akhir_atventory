@@ -34,7 +34,7 @@
                     <th scope="col">Nama Lengkap</th>
                     <th scope="col">Posisi</th>
                     <th scope="col">Username</th>
-                    <th scope="col">Email</th>
+                    
                     <th scope="col">Level</th>
                     <!-- <th scope="col">Password</th> -->
                   </tr>
@@ -46,7 +46,7 @@
                     <td>{{ $data->nama_lengkap}}</td>
                     <td>{{ $data->posisi }}</td>
                     <td>{{ $data->username }}</td>
-                    <td>{{ $data->email }}</td>
+                    
                     <td>{{ $data->level }}</td>
                     <!-- <td>{{ $data->password }}</td> -->
                     

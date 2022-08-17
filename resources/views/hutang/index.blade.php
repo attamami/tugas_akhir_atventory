@@ -21,7 +21,7 @@
         <!-- <div class="scrolling-wrapper"> -->
           <div class="card overflow-auto">
             <div class="card-body">
-              <h5 class="card-title">Hutang Piutang</h5>
+              <h5 class="card-title">List Hutang Dagang</h5>
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                     <p>{{ $message }}</p>

@@ -7,8 +7,19 @@
 
     <div class="pagetitle">
         <h1>Dashboard</h1>
-
     </div><!-- End Page Title -->
+    @if(auth()->user()->level=='1' or auth()->user()->level=='3')
+    @foreach ($barang as $data)
+        @if($data->stok < 10)
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-octagon me-1"></i>
+          Stok {{$data->nama_barang}} Kurang Dari 10 {{$data->satuan}} !
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+      
+    @endforeach
+    @endif
 
 
     <section class="section dashboard">
@@ -37,7 +48,6 @@
                         <td><a class="text-dark fw-bold">{{$data->nama_barang}}</a></td>
                         <td>{{$data->stok}}</td>
                       </tr>
-                      
                     @endforeach
                     </tbody>
                   </table>

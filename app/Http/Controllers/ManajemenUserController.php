@@ -29,7 +29,7 @@ class ManajemenUserController extends Controller
             'nama_lengkap' => 'required',
             'posisi' => 'required',
             'username' => 'required',
-            'email' => 'required',
+            
             'level' => 'required',
             'password' => 'required',
             
@@ -43,7 +43,7 @@ class ManajemenUserController extends Controller
         $user->nama_lengkap = $request->nama_lengkap;
         $user->posisi = $request->posisi;
         $user->username = $request->username;
-        $user->email = $request->email;
+        // $user->email = $request->email;
         $user->level = $request->level;
         $user->password = Hash::make($request->password);
         $user->save();
@@ -71,7 +71,7 @@ class ManajemenUserController extends Controller
             'nama_lengkap' => 'required',
             'posisi' => 'required',
             'username' => 'required',
-            'email' => 'required',
+            
             'level' => 'required',
             'password' => 'required',
         ]);
@@ -81,7 +81,7 @@ class ManajemenUserController extends Controller
         $user->nama_lengkap = $request->nama_lengkap;
         $user->posisi = $request->posisi;
         $user->username = $request->username;
-        $user->email = $request->email;
+        // $user->email = $request->email;
         $user->level = $request->level;
         $user->password = Hash::make($request->password);
         $user->save();

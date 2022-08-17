@@ -17,10 +17,12 @@ class LaporanController extends Controller
     {
         $lap_pembelian = DB::table('pembelians')
             ->leftJoin('barangs', 'pembelians.id_barang', '=', 'barangs.id_barang')
+            ->orderBy('pembelians.id','desc')
             ->get();
             
         $lap_penjualan = DB::table('penjualans')
             ->leftJoin('barangs', 'penjualans.id_barang', '=', 'barangs.id_barang')
+            ->orderBy('penjualans.id','desc')
             ->get();
         return view('laporan.index', compact('lap_penjualan','lap_pembelian'));
     }

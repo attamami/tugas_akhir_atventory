@@ -11,7 +11,7 @@ class PenjualanController extends Controller
 {
     public function index()
     {
-        $data['penjualan'] = Penjualan::orderBy('id','asc')->get();
+        $data['penjualan'] = Penjualan::orderBy('id','desc')->get();
         return view('penjualan.index', $data);
     }
 

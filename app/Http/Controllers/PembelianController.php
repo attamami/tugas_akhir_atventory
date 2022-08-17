@@ -11,7 +11,7 @@ class PembelianController extends Controller
 {
     public function index()
     {
-        $data['pembelian'] = Pembelian::orderBy('id','asc')->get();
+        $data['pembelian'] = Pembelian::orderBy('id','desc')->get();
         return view('pembelian.index', $data);
     }
 

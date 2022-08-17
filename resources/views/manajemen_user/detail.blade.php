@@ -40,11 +40,11 @@
                     <td width="30px">:</td>
                     <td>{{ $user->username }}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td width="100px">Email</td>
                     <td width="30px">:</td>
                     <td>{{$user->email }}</td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td width="100px">Level</td>
                     <td width="30px">:</td>

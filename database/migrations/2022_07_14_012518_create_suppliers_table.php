@@ -23,11 +23,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // DB::table('suppliers')->insert([
-        //     ['id_supplier' => 'SP001', 'nama_supplier' => 'PT. Pinus Merah Abadi', 'telp' => '0-21-451-6718', 'alamat' => 'Dukuh Bogol, Desa Megawon, RT.01/RW.03, Bogol, Megawon, Kec. Jati, Kabupaten Kudus, Jawa Tengah'],
-        //     ['id_supplier' => 'SP002', 'nama_supplier' => 'PT. Jaya Berhasil Bersama', 'telp' => '0-21-730-6852','alamat' => 'Karangampel, Kec. Kaliwungu, Kabupaten Kudus, Jawa Tengah'],
-        //     ['id_supplier' => 'SP003', 'nama_supplier' => 'PT. Indomarco Adiprima SP Welahan', 'telp' => '0-31-355-9811', 'alamat' => 'Sobokerto, Gg. Pasar, Kec. Welahan, Kabupaten Jepara, Jawa Tengah'],
-        // ]);
+        DB::table('suppliers')->insert([
+            ['id_supplier' => 'SP001', 'nama_supplier' => 'PT. Pinus Merah Abadi', 'telp' => '0-21-451-6718', 'alamat' => 'Dukuh Bogol, Desa Megawon, RT.01/RW.03, Bogol, Megawon, Kec. Jati, Kabupaten Kudus, Jawa Tengah'],
+            ['id_supplier' => 'SP002', 'nama_supplier' => 'PT. Jaya Berhasil Bersama', 'telp' => '0-21-730-6852','alamat' => 'Karangampel, Kec. Kaliwungu, Kabupaten Kudus, Jawa Tengah'],
+            ['id_supplier' => 'SP003', 'nama_supplier' => 'PT. Indomarco Adiprima SP Welahan', 'telp' => '0-31-355-9811', 'alamat' => 'Sobokerto, Gg. Pasar, Kec. Welahan, Kabupaten Jepara, Jawa Tengah'],
+        ]);
     }
 
     /**
