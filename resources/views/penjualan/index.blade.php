@@ -35,9 +35,10 @@
                 <thead>
                   <tr>
                     <th scope="col">ID Penjualan</th>
+                    <th scope="col">Nama Sales</th>
                     <th scope="col">Tanggal Jual</th>
-                    <th scope="col">ID Outlet</th>
-                    <th scope="col">ID Barang</th>
+                    <th scope="col">Nama Outlet</th>
+                    <!-- <th scope="col">ID Barang</th> -->
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Jenis Barang</th>
                     <th scope="col">Harga Jual</th>
@@ -49,11 +50,11 @@
                 </thead>
                 @foreach ($penjualan as $data)
                   <tr>
-                    
                     <td>{{ $data->id_penjualan }}</td>
+                    <td>{{ $data->sales->nama_sales }}</td>
                     <td>{{ $data->tgl_jual }}</td>
-                    <td>{{ $data->id_outlet }}</td>
-                    <td>{{ $data->id_barang }}</td>
+                    <td>{{ $data->outlet->nama_outlet }}</td>
+                    <!-- <td>{{ $data->id_barang }}</td> -->
                     <td>{{ $data->barang->nama_barang }}</td>
                     <td>{{ $data->barang->jenis_barang }}</td>
                     <td>Rp {{ number_format($data->barang->harga_jual) }}</td>

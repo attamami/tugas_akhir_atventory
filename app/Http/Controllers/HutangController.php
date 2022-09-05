@@ -6,6 +6,7 @@ use App\Models\Hutang;
 use App\Models\Lunashutang;
 use App\Models\Jenishutang;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HutangController extends Controller
@@ -21,7 +22,21 @@ class HutangController extends Controller
         $suppliers = Supplier::get();
         $lunashutangs = Lunashutang::get();
         $jenishutangs = Jenishutang::get();
-        return view('hutang.create', compact('suppliers','lunashutangs','jenishutangs'));
+
+        $q = Hutang::select(DB::raw('MAX(RIGHT(id_hutang,2)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%02s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "01";
+        }
+        return view('hutang.create', compact('suppliers','lunashutangs','jenishutangs','kd'));
     }
     public function store(Request $request)
     {

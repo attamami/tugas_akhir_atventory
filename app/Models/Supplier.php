@@ -10,4 +10,7 @@ class Supplier extends Model
     public function hutang(){
         return $this->belongsTo(Hutang::class,'foreign_key', 'id_hutang');
     }
+    public function pembelian(){
+        return $this->belongsTo(Pembelian::class,'foreign_key', 'id_pembelian');
+    }
 }

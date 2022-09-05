@@ -36,8 +36,8 @@
                   <tr>
                     <th scope="col">ID Pembelian</th>
                     <th scope="col">Tanggal Beli</th>
-                    <th scope="col">ID Supplier</th>
-                    <th scope="col">ID Barang</th>
+                    <th scope="col">Nama Supplier</th>
+                    <!-- <th scope="col">ID Barang</th> -->
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Jenis Barang</th>
                     <th scope="col">Harga Beli</th>
@@ -52,8 +52,8 @@
                     
                     <td>{{ $data->id_pembelian }}</td>
                     <td>{{ $data->tgl_beli }}</td>
-                    <td>{{ $data->id_supplier }}</td>
-                    <td>{{ $data->id_barang }}</td>
+                    <td>{{ $data->supplier->nama_supplier }}</td>
+                    
                     <td>{{ $data->barang->nama_barang }}</td>
                     <td>{{ $data->barang->jenis_barang }}</td>
                     <td>Rp {{ number_format($data->barang->harga_beli) }}</td>

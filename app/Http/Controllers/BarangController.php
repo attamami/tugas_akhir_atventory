@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Jenisbarang;
 use App\Models\Satuan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -18,7 +19,21 @@ class BarangController extends Controller
     {
         $jenisbarang = Jenisbarang::get();
         $satuans = Satuan::get();
-        return view('barang.create', compact('jenisbarang','satuans'));
+
+        $q = Barang::select(DB::raw('MAX(RIGHT(id_barang,2)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%02s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "01";
+        }
+        return view('barang.create', compact('jenisbarang','satuans','kd'));
     }
     public function store(Request $request)
     {

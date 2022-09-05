@@ -3,6 +3,8 @@
 @section('content')
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <main id="main" class="main">
 
 <div class="pagetitle">
@@ -39,7 +41,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>ID Piutang</strong>
-                        <input type="text" id="id_piutang" name="id_piutang" class="form-control" placeholder="Masukkan ID Piutang" autocomplete="off">
+                        <input type="text" id="id_piutang" readonly value="{{'PTG'.$kd}}" name="id_piutang" class="form-control" placeholder="Masukkan ID Piutang" autocomplete="off">
                         @error('id_piutang')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -47,31 +49,31 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label><strong>ID Outlet</strong></label>
-                    {{-- <input name="id_outlet" class="form-control" value="{{ $piutang->id_outlet }}"> --}}
-                    <select class="form-control" name="id_outlet" id="id_outlet">
-                        <option selected disabled>Pilih ID Outlet ...</option>
+                    <label><strong>Nama Outlet</strong></label>
+                    
+                    <select class="form-control" name="nama_outlet" id="nama_outlet">
+                        <option selected disabled>Masukkan Nama Outlet ...</option>
                         @foreach($outlets as $outlet)
-                            <option data-row="{{$outlet}}" value="{{$outlet->id_outlet}}">{{$outlet->id_outlet}}</option>
+                            <option data-row="{{$outlet}}" value="{{$outlet->nama_outlet}}">{{$outlet->nama_outlet}}</option>
                         @endforeach
                     </select>
                     <div class="text-danger">
-                        @error('id_outlet')
+                        @error('nama_outlet')
                             {{ $message }}
                         @enderror
                     </div>
                 </div>
                 <br>
-                <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
                   <div class="form-group">
-                      <strong>Nama Outlet</strong>
-                      <input type="text" id="nama_outlet" name="nama_outlet" class="form-control" placeholder="Masukkan Nama Outlet" readonly>
-                      @error('nama_outlet')
+                      <strong>ID Outlet</strong>
+                      <input type="text" id="id_outlet" name="id_outlet" class="form-control" readonly>
+                      @error('id_outlet')
                           <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
                   </div>
                 </div>
-                <br>
+                
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
                       <strong>Nominal Hutang</strong>
@@ -166,37 +168,18 @@
     </section>
     <script>
     $(document).ready(function() {
-        $(document).on('change', '#id_outlet', function(){
+        $(document).on('change', '#nama_outlet', function(){
             
             var res   =  $(this).find(':selected').data('row');
             console.log(res);
-            $('#nama_outlet').val(res.nama_outlet);
-        });
-    });
-    </script>
-   
-    <!-- <script>
-    $(document).ready(function() {
-        $(document).on('change', '#id_barang', function(){
-            // var res   =  $(this).find(':selected').data('row');
-            var res   =  $(this).find(':selected').data('row');
-            console.log(res);
-            $('#nama_barang').val(res.nama_barang);
-            $('#jenis_barang').val(res.jenis_barang);
-            $('#harga_jual').val(res.harga_jual);
-            $('#satuan').val(res.satuan);
+            $('#id_outlet').val(res.id_outlet);
         });
     });
     </script>
     <script>
-        function sum(){
-		var txtFirstNumberValue = document.getElementById('harga_jual').value;
-		var txtSecondNumberValue = document.getElementById('jumlah').value;
-		var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
-		if (!isNaN(result)){
-			document.getElementById('totalhrg').value=result;
-		}
-	}
-    </script> -->
+        $(document).ready(function() {
+        $('#nama_outlet').select2();
+        });
+    </script>
 </main>
 @endsection

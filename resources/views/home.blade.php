@@ -10,12 +10,42 @@
     </div><!-- End Page Title -->
     @if(auth()->user()->level=='1' or auth()->user()->level=='3')
     @foreach ($barang as $data)
-        @if($data->stok < 10)
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <i class="bi bi-exclamation-octagon me-1"></i>
-          Stok {{$data->nama_barang}} Kurang Dari 10 {{$data->satuan}} !
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        @if($data->satuan == 'Dus')
+          @if($data->stok < 50)
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="bi bi-exclamation-octagon me-1"></i>
+            Stok {{$data->nama_barang}} Kurang Dari 50 {{$data->satuan}} !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
+
+        @elseif($data->satuan == 'Pack')
+          @if($data->stok < 80)
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="bi bi-exclamation-octagon me-1"></i>
+            Stok {{$data->nama_barang}} Kurang Dari 80 {{$data->satuan}} !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
+
+        @elseif($data->satuan == 'Lusin')
+          @if($data->stok < 60)
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="bi bi-exclamation-octagon me-1"></i>
+            Stok {{$data->nama_barang}} Kurang Dari 60 {{$data->satuan}} !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
+
+        @elseif($data->satuan == 'Renceng')
+          @if($data->stok < 100)
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="bi bi-exclamation-octagon me-1"></i>
+            Stok {{$data->nama_barang}} Kurang Dari 100 {{$data->satuan}} !
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          @endif
+
         @endif
       
     @endforeach

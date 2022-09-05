@@ -3,6 +3,8 @@
 @section('content')
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <main id="main" class="main">
 
 <div class="pagetitle">
@@ -39,69 +41,97 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>ID Penjualan</strong>
-                        <input type="text" id="id_penjualan" name="id_penjualan" class="form-control" placeholder="Masukkan ID Penjualan" autocomplete="off">
+                        <input type="text" id="id_penjualan" readonly value="{{'PJ'.$kd}}" name="id_penjualan" class="form-control" placeholder="Masukkan ID Penjualan" autocomplete="off">
                         @error('id_penjualan')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
+                <br>
                 <div class="form-group">
-                    <label><strong></strong></label>
-                    {{-- <input name="id_outlet" class="form-control" value="{{ $penjualan->id_outlet }}"> --}}
-                    <select class="form-control" name="id_outlet" id="id_outlet">
-                        <option selected disabled>Pilih ID Outlet ...</option>
-                        @foreach($outlets as $outlet)
-                            <option data-row="{{$outlet}}" value="{{$outlet->id_outlet}}">{{$outlet->id_outlet}}</option>
+                    <label><strong>Nama Sales</strong></label>
+                    
+                    <select class="form-control" name="nama_sales" id="nama_sales">
+                        <option selected disabled>Masukkan Nama Sales ...</option>
+                        @foreach($salesds as $s)
+                            <option data-row="{{$s}}" value="{{$s->nama_sales}}">{{$s->nama_sales}}</option>
                         @endforeach
                     </select>
                     <div class="text-danger">
-                        @error('id_outlet')
+                        @error('nama_sales')
                             {{ $message }}
                         @enderror
                     </div>
                 </div>
-<br>
-                <div class="col-xs-12 col-sm-12 col-md-12">
+                <br>
+                <div class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
                   <div class="form-group">
-                      <strong>Nama Outlet</strong>
-                      <input type="text" id="nama_outlet" name="nama_outlet" class="form-control" placeholder="Masukkan Nama Outlet" autocomplete="off" readonly>
-                      @error('nama_outlet')
+                      <strong>ID Sales</strong>
+                      <input type="text" id="id_sales" name="id_sales" class="form-control" autocomplete="off" readonly> 
+                      
+                      @error('id_sales')
                           <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
                   </div>
                 </div>
-                <br>
+
                 <div class="form-group">
-                    <label><strong>ID Barang</strong></label>
-                    {{-- <input name="id_barang" class="form-control" value="{{ $penjualan->id_barang }}"> --}}
-                    <select class="form-control" name="id_barang" id="id_barang">
-                        <option selected disabled>Pilih ID Barang ...</option>
-                        @foreach($barangs as $barang)
-                            <option data-row="{{$barang}}" value="{{$barang->id_barang}}">{{$barang->id_barang}}</option>
+                    <label><strong>Nama Outlet</strong></label>
+                    
+                    <select class="form-control" name="nama_outlet" id="nama_outlet">
+                        <option selected disabled>Masukkan Nama Outlet ...</option>
+                        @foreach($outlets as $outlet)
+                            <option data-row="{{$outlet}}" value="{{$outlet->nama_outlet}}">{{$outlet->nama_outlet}}</option>
                         @endforeach
                     </select>
                     <div class="text-danger">
-                        @error('id_barang')
+                        @error('nama_outlet')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+                <br>
+                <div class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
+                  <div class="form-group">
+                      <strong>ID Outlet</strong>
+                      <input type="text" id="id_outlet" name="id_outlet" class="form-control" autocomplete="off" readonly>
+                      @error('id_outlet')
+                          <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                      @enderror
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                    <label><strong>Nama Barang</strong></label>
+                    
+                    <select class="form-control" name="nama_barang" id="nama_barang">
+                        <option selected disabled>Masukkan Nama Barang ...</option>
+                        @foreach($barangs as $barang)
+                            <option data-row="{{$barang}}" value="{{$barang->nama_barang}}">{{$barang->nama_barang}}</option>
+                        @endforeach
+                    </select>
+                    <div class="text-danger">
+                        @error('nama_barang')
                             {{ $message }}
                         @enderror
                     </div>
                 </div>
                 <br>
                 
-                <div class="row ml-auto">
+                <div class="row ml-auto" style="display: none;">
                     <div class="col">
-                        <strong>Nama Barang</strong>
-                        <input type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Masukkan Nama Barang" autocomplete="off" readonly>
-                        @error('nama_barang')
+                        <strong>ID Barang</strong>
+                        <input type="text" id="id_barang" name="id_barang" class="form-control"  autocomplete="off" readonly>
+                        @error('id_barang')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-                <br>
+                
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Jenis Barang</strong>
-                        <input type="text" id="jenis_barang" name="jenis_barang" class="form-control" placeholder="Masukkan Jenis Barang" autocomplete="off" readonly>
+                        <input type="text" id="jenis_barang" name="jenis_barang" class="form-control" autocomplete="off" readonly>
                         @error('jenis_barang')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -112,7 +142,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Satuan</strong>
-                        <input type="text" id="satuan" name="satuan" class="form-control" placeholder="Masukkan Satuan" autocomplete="off" readonly>
+                        <input type="text" id="satuan" name="satuan" class="form-control" autocomplete="off" readonly>
                         @error('satuan')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -122,7 +152,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>Harga Per Satuan</strong>
-                        <input type="number" id="harga_jual" name="harga_jual" onkeyup="sum();" class="form-control" placeholder="Masukkan Harga" autocomplete="off" readonly>
+                        <input type="number" id="harga_jual" name="harga_jual" onkeyup="sum();" class="form-control" autocomplete="off" readonly>
                         @error('harga_beli')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -178,25 +208,32 @@
     </section>
     <script>
     $(document).ready(function() {
-        $(document).on('change', '#id_outlet', function(){
+        $(document).on('change', '#nama_outlet', function(){
             // var res   =  $(this).find(':selected').data('row');
             var res   =  $(this).find(':selected').data('row');
             console.log(res);
-            $('#nama_outlet').val(res.nama_outlet);
+            $('#id_outlet').val(res.id_outlet);
             // $('#alamat').val(res.alamat);
         });
     });
     </script>
-    <!-- <script>
-        var stokbaru = $(stoks.stok) + $('#jumlah').val();
-    </script> -->
     <script>
     $(document).ready(function() {
-        $(document).on('change', '#id_barang', function(){
+        $(document).on('change', '#nama_sales', function(){
+            var res   =  $(this).find(':selected').data('row');
+            console.log(res);
+            $('#id_sales').val(res.id_sales);
+            // $('#alamat').val(res.alamat);
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $(document).on('change', '#nama_barang', function(){
             // var res   =  $(this).find(':selected').data('row');
             var res   =  $(this).find(':selected').data('row');
             console.log(res);
-            $('#nama_barang').val(res.nama_barang);
+            $('#id_barang').val(res.id_barang);
             $('#jenis_barang').val(res.jenis_barang);
             $('#harga_jual').val(res.harga_jual);
             $('#satuan').val(res.satuan);
@@ -212,6 +249,19 @@
 			document.getElementById('totalhrg').value=result;
 		}
 	}
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#nama_sales').select2();
+        });
+
+        $(document).ready(function() {
+        $('#nama_outlet').select2();
+        });
+
+        $(document).ready(function() {
+        $('#nama_barang').select2();
+        });
     </script>
 </main>
 @endsection

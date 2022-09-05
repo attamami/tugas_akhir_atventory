@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Outlet;
+use Illuminate\Support\Facades\DB;
 
 class OutletController extends Controller
 {
@@ -15,7 +16,21 @@ class OutletController extends Controller
 
     public function create()
     {
-        return view('outlet.create');
+        $q = Outlet::select(DB::raw('MAX(RIGHT(id_outlet,3)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%03s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "001";
+        }
+        return view('outlet.create', compact('kd'));
+        
     }
 
     public function store(Request $request)

@@ -6,6 +6,7 @@ use App\Models\Pembelian;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Barang;
+use Illuminate\Support\Facades\DB;
 
 class PembelianController extends Controller
 {
@@ -19,7 +20,21 @@ class PembelianController extends Controller
     {
         $suppliers = Supplier::get();
         $barangs = Barang::get();
-        return view('pembelian.create', compact('suppliers','barangs'));
+
+        $q = Pembelian::select(DB::raw('MAX(RIGHT(id_pembelian,3)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%03s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "001";
+        }
+        return view('pembelian.create', compact('suppliers','barangs','kd'));
     }
     public function store(Request $request)
     {

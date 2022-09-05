@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Salesd;
+use Illuminate\Support\Facades\DB;
 
 class SalesdController extends Controller
 {
@@ -15,7 +16,21 @@ class SalesdController extends Controller
 
     public function create()
     {
-        return view('salesd.create');
+        $q = Salesd::select(DB::raw('MAX(RIGHT(id_sales,3)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%03s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "001";
+        }
+        return view('salesd.create', compact('kd'));
+        
     }
 
     public function store(Request $request)

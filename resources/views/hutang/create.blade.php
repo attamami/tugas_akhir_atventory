@@ -3,6 +3,8 @@
 @section('content')
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <main id="main" class="main">
 
 <div class="pagetitle">
@@ -39,7 +41,7 @@
             <div class="row ml-auto">
                     <div class="col">
                         <strong>ID Hutang</strong>
-                        <input type="text" id="id_hutang" name="id_hutang" class="form-control" placeholder="Masukkan ID Hutang" autocomplete="off">
+                        <input type="text" id="id_hutang" readonly value="{{'HTG'.$kd}}" name="id_hutang" class="form-control" placeholder="Masukkan ID Hutang" autocomplete="off">
                         @error('id_hutang')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
@@ -47,31 +49,31 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label><strong>ID Supplier</strong></label>
-                    {{-- <input name="id_supplier" class="form-control" value="{{ $hutang->id_supplier }}"> --}}
-                    <select class="form-control" name="id_supplier" id="id_supplier">
-                        <option selected disabled>Pilih ID Supplier ...</option>
+                    <label><strong>Nama Supplier</strong></label>
+                    
+                    <select class="form-control" name="nama_supplier" id="nama_supplier">
+                        <option selected disabled>Masukkan Nama Supplier ...</option>
                         @foreach($suppliers as $supplier)
-                            <option data-row="{{$supplier}}" value="{{$supplier->id_supplier}}">{{$supplier->id_supplier}}</option>
+                            <option data-row="{{$supplier}}" value="{{$supplier->nama_supplier}}">{{$supplier->nama_supplier}}</option>
                         @endforeach
                     </select>
                     <div class="text-danger">
-                        @error('id_supplier')
+                        @error('nama_supplier')
                             {{ $message }}
                         @enderror
                     </div>
                 </div>
                 <br>
-                <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 col-sm-12 col-md-12" style="display: none;">
                   <div class="form-group">
-                      <strong>Nama Supplier</strong>
-                      <input type="text" id="nama_supplier" name="nama_supplier" class="form-control" placeholder="Masukkan Nama Supplier" readonly>
-                      @error('nama_supplier')
+                      <strong>ID Supplier</strong>
+                      <input type="text" id="id_supplier" name="id_supplier" class="form-control" readonly>
+                      @error('id_supplier')
                           <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                       @enderror
                   </div>
                 </div>
-                <br>
+                
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
                       <strong>Nominal Hutang</strong>
@@ -166,37 +168,18 @@
     </section>
     <script>
     $(document).ready(function() {
-        $(document).on('change', '#id_supplier', function(){
+        $(document).on('change', '#nama_supplier', function(){
             
             var res   =  $(this).find(':selected').data('row');
             console.log(res);
-            $('#nama_supplier').val(res.nama_supplier);
+            $('#id_supplier').val(res.id_supplier);
         });
     });
     </script>
-   
-    <!-- <script>
-    $(document).ready(function() {
-        $(document).on('change', '#id_barang', function(){
-            // var res   =  $(this).find(':selected').data('row');
-            var res   =  $(this).find(':selected').data('row');
-            console.log(res);
-            $('#nama_barang').val(res.nama_barang);
-            $('#jenis_barang').val(res.jenis_barang);
-            $('#harga_jual').val(res.harga_jual);
-            $('#satuan').val(res.satuan);
+   <script>
+        $(document).ready(function() {
+        $('#nama_supplier').select2();
         });
-    });
     </script>
-    <script>
-        function sum(){
-		var txtFirstNumberValue = document.getElementById('harga_jual').value;
-		var txtSecondNumberValue = document.getElementById('jumlah').value;
-		var result = parseInt(txtFirstNumberValue) * parseInt(txtSecondNumberValue);
-		if (!isNaN(result)){
-			document.getElementById('totalhrg').value=result;
-		}
-	}
-    </script> -->
 </main>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +16,20 @@ class SupplierController extends Controller
 
     public function create()
     {
-        return view('supplier.create');
+        $q = Supplier::select(DB::raw('MAX(RIGHT(id_supplier,3)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%03s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "001";
+        }
+        return view('supplier.create', compact('kd'));
     }
 
     public function store(Request $request)

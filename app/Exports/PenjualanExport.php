@@ -30,11 +30,14 @@ class PenjualanExport implements FromCollection, WithHeadings
         
         $data = DB::table('penjualans')
                 ->Join('barangs', 'penjualans.id_barang', '=', 'barangs.id_barang')
+                ->Join('salesds', 'penjualans.id_sales', '=', 'salesds.id_sales')
+                ->Join('outlets', 'penjualans.id_outlet', '=', 'outlets.id_outlet')
                 ->select(
                     'penjualans.id_penjualan',
+                    'salesds.nama_sales',
                     'penjualans.tgl_jual',
-                    'penjualans.id_outlet',
-                    'penjualans.id_barang',
+                    'outlets.nama_outlet',
+                    // 'penjualans.id_barang',
                     'barangs.nama_barang',
                     'barangs.jenis_barang',
                     'barangs.harga_jual',
@@ -54,9 +57,10 @@ class PenjualanExport implements FromCollection, WithHeadings
     public function headings(): array{
         return [
             'ID Penjualan',
+            'Nama Sales',
             'Tanggal Jual',
-            'ID Outlet',
-            'ID Barang',
+            'Nama Outlet',
+            // 'ID Barang',
             'Nama Barang',
             'Jenis Barang',
             'Harga Per Satuan',

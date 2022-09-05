@@ -34,10 +34,11 @@
               <table class="table" id="table_anc" style="overflow-x: auto;">
                 <thead>
                   <tr>
-                    <th scope="col">ID Penjualan</th>
+                  <th scope="col">ID Penjualan</th>
+                    <th scope="col">Nama Sales</th>
                     <th scope="col">Tanggal Jual</th>
-                    <th scope="col">ID Outlet</th>
-                    <th scope="col">ID Barang</th>
+                    <th scope="col">Nama Outlet</th>
+                    
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Jenis Barang</th>
                     <th scope="col">Harga Per Satuan</th>
@@ -55,10 +56,11 @@
                 @php($total=0)
                 @foreach ($lap_penjualan as $data)
                   <tr>
-                    <td>{{ $data->id_penjualan }}</td>
+                  <td>{{ $data->id_penjualan }}</td>
+                    <td>{{ $data->nama_sales }}</td>
                     <td>{{ $data->tgl_jual }}</td>
-                    <td>{{ $data->id_outlet }}</td>
-                    <td>{{ $data->id_barang }}</td>
+                    <td>{{ $data->nama_outlet }}</td>
+                    
                     <td>{{ $data->nama_barang }}</td>
                     <td>{{ $data->jenis_barang }}</td>
                     <td>Rp {{ number_format($data->harga_jual) }}</td>

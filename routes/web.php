@@ -14,6 +14,7 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\SatuanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::resource('penjualan', PenjualanController::class);
         Route::resource('piutang', PiutangController::class);
         Route::resource('hutang', HutangController::class);
+        Route::resource('satuan', SatuanController::class);
         Route::resource('manajemen_user', ManajemenUserController::class);
         // Route::get('/manajemen_user/show/{id}', [ManajemenUserController::class, 'show']);
 

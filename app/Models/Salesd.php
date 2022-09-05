@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salesd extends Model
 {
-    use HasFactory;
+    public function penjualan(){
+        return $this->belongsTo(Penjualan::class,'foreign_key', 'id_penjualan');
+    }
 }

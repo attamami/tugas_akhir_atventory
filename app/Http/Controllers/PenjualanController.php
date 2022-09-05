@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Penjualan;
 use App\Models\Outlet;
 use App\Models\Barang;
+use App\Models\Salesd;
+use Illuminate\Support\Facades\DB;
 
 class PenjualanController extends Controller
 {
@@ -19,7 +21,22 @@ class PenjualanController extends Controller
     {
         $outlets = Outlet::get();
         $barangs = Barang::get();
-        return view('penjualan.create', compact('outlets','barangs'));
+        $salesds = Salesd::get();
+
+        $q = Penjualan::select(DB::raw('MAX(RIGHT(id_penjualan,3)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%03s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "001";
+        }
+        return view('penjualan.create', compact('outlets','barangs','kd','salesds'));
     }
     public function store(Request $request)
     {
@@ -30,6 +47,7 @@ class PenjualanController extends Controller
             'jumlah' => 'required',
             'totalhrg' => 'required',
             'tgl_jual' => 'required',
+            'id_sales' => 'required',
         ]);
         
         // dd($request->id_barang);
@@ -41,6 +59,7 @@ class PenjualanController extends Controller
         else{
             $penjualan = new Penjualan();
             $penjualan->id_penjualan = $request->id_penjualan;
+            $penjualan->id_sales = $request->id_sales;
             $penjualan->id_outlet = $request->id_outlet;
             $penjualan->id_barang = $request->id_barang;
             $penjualan->jumlah = $request->jumlah;

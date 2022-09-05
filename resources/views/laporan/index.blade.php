@@ -37,9 +37,10 @@
                 <thead>
                   <tr>
                     <th scope="col">ID Penjualan</th>
+                    <th scope="col">Nama Sales</th>
                     <th scope="col">Tanggal Jual</th>
-                    <th scope="col">ID Outlet</th>
-                    <th scope="col">ID Barang</th>
+                    <th scope="col">Nama Outlet</th>
+                    
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Jenis Barang</th>
                     <th scope="col">Harga Per Satuan</th>
@@ -53,9 +54,10 @@
                 @foreach ($lap_penjualan as $data)
                   <tr>
                     <td>{{ $data->id_penjualan }}</td>
+                    <td>{{ $data->nama_sales }}</td>
                     <td>{{ $data->tgl_jual }}</td>
-                    <td>{{ $data->id_outlet }}</td>
-                    <td>{{ $data->id_barang }}</td>
+                    <td>{{ $data->nama_outlet }}</td>
+                    
                     <td>{{ $data->nama_barang }}</td>
                     <td>{{ $data->jenis_barang }}</td>
                     <td>Rp {{ number_format($data->harga_jual) }}</td>
@@ -107,8 +109,8 @@
                   <tr>
                     <th scope="col">ID Pembelian</th>
                     <th scope="col">Tanggal Beli</th>
-                    <th scope="col">ID Supplier</th>
-                    <th scope="col">ID Barang</th>
+                    <th scope="col">Nama Supplier</th>
+                    <!-- <th scope="col">ID Barang</th> -->
                     <th scope="col">Nama Barang</th>
                     <th scope="col">Jenis Barang</th>
                     <th scope="col">Harga Per Satuan</th>
@@ -123,8 +125,8 @@
                   <tr>
                     <td>{{ $data->id_pembelian }}</td>
                     <td>{{ $data->tgl_beli }}</td>
-                    <td>{{ $data->id_supplier }}</td>
-                    <td>{{ $data->id_barang }}</td>
+                    <td>{{ $data->nama_supplier }}</td>
+                    
                     <td>{{ $data->nama_barang }}</td>
                     <td>{{ $data->jenis_barang }}</td>
                     <td>Rp {{ number_format($data->harga_jual) }}</td>
@@ -254,7 +256,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Print Data Penjualan</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Print Data Pembelian</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

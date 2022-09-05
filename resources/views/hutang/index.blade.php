@@ -39,7 +39,7 @@
                 <thead>
                   <tr>
                     <th scope="col">ID Hutang</th>
-                    <th scope="col">ID Supplier</th>
+                    
                     <th scope="col">Nama Supplier</th>
                     <th scope="col">Nominal Hutang</th>
                     <th scope="col">Nominal Terbayar</th>
@@ -53,7 +53,7 @@
                 @foreach ($hutang as $data)
                   <tr>
                     <td>{{ $data->id_hutang }}</td>
-                    <td>{{ $data->id_supplier }}</td>
+                    
                     <td>{{ $data->supplier->nama_supplier }}</td>
                     <td>Rp {{ number_format($data->nominal_hutang) }}</td>
                     <td>Rp {{ number_format($data->nominal_terbayar) }}</td>

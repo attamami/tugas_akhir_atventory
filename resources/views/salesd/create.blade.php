@@ -32,7 +32,7 @@
                 <div class="row ml-auto">
                     <div class="col">
                         <strong>ID Sales</strong>
-                        <input type="text" id="id_sales" name="id_sales" class="form-control" placeholder="Masukkan ID Sales" autocomplete="off">
+                        <input type="text" id="id_sales" readonly value="{{'SS'.$kd}}" name="id_sales" class="form-control" placeholder="Masukkan ID Sales" autocomplete="off">
                         @error('id_sales')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror

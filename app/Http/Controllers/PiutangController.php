@@ -7,6 +7,7 @@ use App\Models\Lunashutang;
 use App\Models\Outlet;
 use App\Models\Piutang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PiutangController extends Controller
 {
@@ -21,7 +22,21 @@ class PiutangController extends Controller
         $outlets = Outlet::get();
         $lunashutangs = Lunashutang::get();
         $jenishutangs = Jenishutang::get();
-        return view('piutang.create', compact('outlets','lunashutangs','jenishutangs'));
+
+        $q = Piutang::select(DB::raw('MAX(RIGHT(id_piutang,2)) as kode'));
+        $kd = "";
+        if($q->count()>0){
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%02s",$tmp);
+            }
+        }
+        else
+        {
+        $kd = "01";
+        }
+        return view('piutang.create', compact('outlets','lunashutangs','jenishutangs','kd'));
     }
     public function store(Request $request)
     {

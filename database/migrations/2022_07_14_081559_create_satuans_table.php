@@ -15,16 +15,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('satuans', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nama_satuan',50);
             $table->timestamps();
         });
 
         DB::table('satuans')->insert([
-            ['id' => '1', 'nama_satuan' => 'Dus'],
-            ['id' => '2', 'nama_satuan' => 'Pack'],
-            ['id' => '3', 'nama_satuan' => 'Lusin'],
-            ['id' => '4', 'nama_satuan' => 'Renceng'],
+            ['nama_satuan' => 'Dus'],
+            ['nama_satuan' => 'Pack'],
+            ['nama_satuan' => 'Lusin'],
+            ['nama_satuan' => 'Renceng'],
         ]);
     }
 

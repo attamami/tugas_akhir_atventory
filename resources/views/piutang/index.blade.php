@@ -39,7 +39,7 @@
                 <thead>
                   <tr>
                     <th scope="col">ID Piutang</th>
-                    <th scope="col">ID Outlet</th>
+                    
                     <th scope="col">Nama Outlet</th>
                     <th scope="col">Nominal Hutang</th>
                     <th scope="col">Nominal Terbayar</th>
@@ -54,7 +54,7 @@
                   <tr>
                     
                     <td>{{ $data->id_piutang }}</td>
-                    <td>{{ $data->id_outlet }}</td>
+                    
                     <td>{{ $data->outlet->nama_outlet }}</td>
                     <td>Rp {{ number_format($data->nominal_hutang) }}</td>
                     <td>Rp {{ number_format($data->nominal_terbayar) }}</td>
