@@ -11,3 +11,6 @@ Tugas Akhir D3 Teknik Informatika Politeknik Negeri Semarang <br>
 Oleh : <br>
 Mukhammad Badrut Tamam (3.34.19.3.18) <br>
 Alvan Amalana (3.34.19.3.04)
+
+Atventory adalah sebuah website penjualan dan pencatatan data barang dimana di dalamnya terdapat fitur fitur seperti <br>
+pencatatan data barang, transaksi penjualan dan pembelian, print dan export laporan ke PDF dan Excel
